@@ -11,7 +11,7 @@
           </div>
           <v-card class="rounded-xl mt-3">
             <v-card-title>
-              <span>Create Account</span>
+              <span class="red--text darken-4 font-weight-light">Create Account</span>
             </v-card-title>
             <v-card-text>
               <v-form v-on:submit.prevent="signUp">
@@ -49,7 +49,7 @@
             </v-overlay>
           </v-card>
           <div class="d-flex justify-center mt-4">
-            <span class="text-center">
+            <span class="text-center font-weight-light">
               Already have an account?
               <router-link to="/login">Sign in.</router-link>
             </span>

@@ -11,7 +11,7 @@
           </div>
           <v-card class="rounded-xl mt-3">
             <v-card-title>
-              <span>Login</span>
+              <span class="red--text darken-4 font-weight-light">Login</span>
             </v-card-title>
             <v-card-text>
               <v-form v-on:submit.prevent="signIn">
@@ -44,7 +44,7 @@
             </v-overlay>
           </v-card>
           <div class="d-flex justify-center mt-4">
-            <span class="text-center">
+            <span class="text-center font-weight-light">
               New to ART?
               <router-link to="/signup">Sign up.</router-link>
             </span>
@@ -110,7 +110,7 @@ export default {
     }
   },
   mounted() {
-    sessionStorage.setItem("BASE_URL", "https://antiviraltreatementapi.herokuapp.com/api/v1");
+    sessionStorage.setItem("BASE_URL", "http://127.0.0.1:3000/api/v1");
   }
 }
 </script>

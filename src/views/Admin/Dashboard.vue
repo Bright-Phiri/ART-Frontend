@@ -7,7 +7,7 @@
             <v-container fluid>
               <v-row >
                 <v-col v-if="user_role === 'Admin'" cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="info" elevation="2">
+                  <v-alert border="left" colored-border color="danger" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -23,7 +23,7 @@
                 </v-col>
 
                 <v-col cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="info" elevation="2">
+                  <v-alert border="left" colored-border color="success" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -54,7 +54,7 @@
                 </v-col>
 
                 <v-col v-if="user_role === 'HDA Personnel'" cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="info" elevation="2">
+                  <v-alert border="left" colored-border color="danger" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -100,7 +100,7 @@
       </v-col>
       <v-col cols="12" lg="4">
         <v-card tile outlined>
-          <v-card-title class="d-flex">Statistics</v-card-title>
+          <v-card-title class="d-flex font-weight-light">Statistics</v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
             <div class="d-flex justify-center">
