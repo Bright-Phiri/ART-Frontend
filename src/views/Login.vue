@@ -27,7 +27,7 @@
                   type="submit"
                   dark
                   depressed
-                  class="text-capitalize"
+                  class="text-capitalize font-weight-light"
                   block
                   rounded
                   color="#E92023"
@@ -110,7 +110,7 @@ export default {
     }
   },
   mounted() {
-    sessionStorage.setItem("BASE_URL", "http://127.0.0.1:3000/api/v1");
+    sessionStorage.setItem("BASE_URL", "https://antiviraltreatementapi.herokuapp.com/api/v1");
   }
 }
 </script>
