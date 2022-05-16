@@ -1,7 +1,7 @@
 <template>
   <div name="NavBar">
     <nav>
-      <v-navigation-drawer color="#35B4E4" app v-model="drawer">
+      <v-navigation-drawer color="#008F96" app v-model="drawer">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="text-h4">
@@ -9,7 +9,7 @@
                 <v-avatar size="40" class="text-center">
                   <v-img src="../assets/blood_test.png"></v-img>
                 </v-avatar>
-                <span class="text-h4">ART</span>
+                <span class="text-h4 white--text">ART</span>
               </div>
             </v-list-item-title>
           </v-list-item-content>

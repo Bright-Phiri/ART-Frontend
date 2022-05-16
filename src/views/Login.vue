@@ -11,7 +11,7 @@
           </div>
           <v-card class="rounded-xl mt-3">
             <v-card-title>
-              <span class="red--text darken-4 font-weight-light">Login</span>
+              <span class="teal--text darken-4 font-weight-light">Login</span>
             </v-card-title>
             <v-card-text>
               <v-form v-on:submit.prevent="signIn">
@@ -30,7 +30,7 @@
                   class="text-capitalize font-weight-light"
                   block
                   rounded
-                  color="#E92023"
+                  color="#008F96"
                 >Sign in</v-btn>
                 <div class="d-flex">
                   <v-divider class="my-4 mr-2"></v-divider>
@@ -40,7 +40,7 @@
               </v-form>
             </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
-              <v-progress-circular indeterminate color="#E92023" size="64"></v-progress-circular>
+              <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
           <div class="d-flex justify-center mt-4">
@@ -110,7 +110,7 @@ export default {
     }
   },
   mounted() {
-    sessionStorage.setItem("BASE_URL", "https://antiviraltreatementapi.herokuapp.com/api/v1");
+    sessionStorage.setItem("BASE_URL", "http://127.0.0.1:3000/api/v1");
   }
 }
 </script>

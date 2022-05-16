@@ -7,7 +7,7 @@
             <v-container fluid>
               <v-row >
                 <v-col v-if="user_role === 'Admin'" cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="danger" elevation="2">
+                  <v-alert border="left" colored-border color="#C0CA34" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -23,7 +23,7 @@
                 </v-col>
 
                 <v-col cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="success" elevation="2">
+                  <v-alert border="left" colored-border color="#FDD830" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -38,7 +38,7 @@
                   </v-alert>
                 </v-col>
                 <v-col cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="info" elevation="2">
+                  <v-alert border="left" colored-border color="#0197A8" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -54,7 +54,7 @@
                 </v-col>
 
                 <v-col v-if="user_role === 'HDA Personnel'" cols="12" lg="4" sm="6" md="4" class="py-0">
-                  <v-alert border="left" colored-border color="danger" elevation="2">
+                  <v-alert border="left" colored-border color="#65B869" elevation="2">
                     <v-row>
                       <v-col>
                         <v-avatar tile size="50">
@@ -129,7 +129,7 @@ export default {
         xaxis: {
           categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-
+        colors:['#008F96'],
         stroke: {
           curve: 'smooth'
         },
@@ -142,6 +142,7 @@ export default {
         legend: {
           position: 'bottom'
         },
+        colors:['#008F96','#FDD830','#65B869'],
         labels: ["Users", "Patients", "Lab Order Results"]
       },
       series: [],

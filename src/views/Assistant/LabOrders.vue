@@ -12,14 +12,14 @@
                  v-model="lab_order.name"
               ></v-textarea>
               <div class="d-flex justify-end">
-                <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn> <v-btn type="submit" class="ml-2" dark color="#35B4E4">Save</v-btn>
+                <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn> <v-btn type="submit" class="ml-2" dark color="#008F96">Save</v-btn>
               </div>
               </v-form>
            </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
                 <v-progress-circular
                    indeterminate
-                   color="#35B4E4"
+                   color="#008F96"
                    size="64"
                ></v-progress-circular>
              </v-overlay>

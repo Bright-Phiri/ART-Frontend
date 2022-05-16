@@ -32,14 +32,14 @@
                       </v-row>
                    </v-container>
                    <div class="d-flex justify-end">
-                      <v-btn v-on:click="cancel" class="secondary text-capitalize">Cancel</v-btn> <v-btn type="submit" class="ml-2 text-capitalize" dark color="#35B4E4">Save</v-btn>
+                      <v-btn v-on:click="cancel" class="secondary text-capitalize">Cancel</v-btn> <v-btn type="submit" class="ml-2 text-capitalize" dark color="#008F96">Save</v-btn>
                    </div>
                 </v-form>
               </v-card-text>
               <v-overlay absolute opacity="0" :value="overlay">
                 <v-progress-circular
                    indeterminate
-                   color="#35B4E4"
+                   color="#008F96"
                    size="64"
                ></v-progress-circular>
              </v-overlay>
@@ -75,14 +75,14 @@
                       </v-row>
                    </v-container>
                    <div class="d-flex justify-end">
-                      <v-btn v-on:click="cancelEdit" class="secondary text-capitalize">Cancel</v-btn> <v-btn type="submit" class="ml-2 text-capitalize" dark color="#35B4E4">Update user</v-btn>
+                      <v-btn v-on:click="cancelEdit" class="secondary text-capitalize">Cancel</v-btn> <v-btn type="submit" class="ml-2 text-capitalize" dark color="#008F96">Update user</v-btn>
                    </div>
                 </v-form>
               </v-card-text>
               <v-overlay absolute opacity="0" :value="overlay">
                 <v-progress-circular
                    indeterminate
-                   color="#35B4E4"
+                   color="#008F96"
                    size="64"
                ></v-progress-circular>
              </v-overlay>
@@ -92,13 +92,13 @@
             <v-card-title class="d-flex">
                <span>Manage Users</span>
                <v-spacer></v-spacer>
-               <v-btn class="text-capitalize" dark color="#35B4E4" v-on:click="addUserDialog = !addUserDialog" small outlined><v-icon left>mdi-account-plus</v-icon>New User</v-btn>
+               <v-btn class="text-capitalize" dark color="#2A9B90" v-on:click="addUserDialog = !addUserDialog" small outlined><v-icon left>mdi-account-plus</v-icon>New User</v-btn>
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
                <v-data-table dense :headers="headers"  class="elevation-1" :search="search" :items-per-page="7" :items="users" :loading="loading" loading-text="loading users">
                   <template v-slot:[`item.action`]="{ item }">
-                   <v-icon small class="mr-2" v-on:click="selectUserRecord(item.id)" color="primary">mdi-pencil</v-icon>
+                   <v-icon small v-on:click="selectUserRecord(item.id)" color="primary">mdi-pencil</v-icon>
                    <v-icon small color="red" v-on:click="deleteUser(item.id)">mdi-delete</v-icon>
                  </template>
                </v-data-table>

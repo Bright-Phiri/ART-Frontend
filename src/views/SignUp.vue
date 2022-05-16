@@ -11,7 +11,7 @@
           </div>
           <v-card class="rounded-xl mt-3">
             <v-card-title>
-              <span class="red--text darken-4 font-weight-light">Create Account</span>
+              <span class="teal--text darken-4 font-weight-light">Create Account</span>
             </v-card-title>
             <v-card-text>
               <v-form v-on:submit.prevent="signUp">
@@ -39,13 +39,13 @@
                   class="text-capitalize"
                   block
                   rounded
-                  color="#E92023"
+                  color="#008F96"
                 >Sign up</v-btn>
                 <v-divider class="my-4"></v-divider>
               </v-form>
             </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
-              <v-progress-circular indeterminate color="#E92023" size="64"></v-progress-circular>
+              <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
           <div class="d-flex justify-center mt-4">

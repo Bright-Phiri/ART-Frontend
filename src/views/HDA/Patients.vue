@@ -50,12 +50,12 @@
                 </v-container>
                 <div class="d-flex justify-end">
                   <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn>
-                  <v-btn type="submit" class="ml-2" dark color="#35B4E4">Save</v-btn>
+                  <v-btn type="submit" class="ml-2" dark color="#008F96">Save</v-btn>
                 </div>
               </v-form>
             </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
-              <v-progress-circular indeterminate color="#35B4E4" size="64"></v-progress-circular>
+              <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
         </v-dialog>
@@ -76,12 +76,12 @@
                 <v-text-field label="Blood Temperature" v-model="lab_order.temperature"></v-text-field>
                 <div class="d-flex justify-end">
                   <v-btn v-on:click="cancelLabOrder" dark class="secondary text-capitalize">Cancel</v-btn>
-                  <v-btn class="ml-2 text-capitalize" dark color="#35B4E4" type="submit">Add lab order</v-btn>
+                  <v-btn class="ml-2 text-capitalize" dark color="#008F96" type="submit">Add lab order</v-btn>
                 </div>
               </v-form>
             </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
-              <v-progress-circular indeterminate color="#35B4E4" size="64"></v-progress-circular>
+              <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
         </v-dialog>
@@ -134,12 +134,12 @@
                 </v-container>
                 <div class="d-flex justify-end">
                   <v-btn v-on:click="cancelEdit" class="text-capitalize secondary">Cancel</v-btn>
-                  <v-btn type="submit" class="ml-2 text-capitalize" dark color="#35B4E4">Update patient</v-btn>
+                  <v-btn type="submit" class="ml-2 text-capitalize" dark color="#008F96">Update patient</v-btn>
                 </div>
               </v-form>
             </v-card-text>
             <v-overlay absolute opacity="0" :value="overlay">
-              <v-progress-circular indeterminate color="#35B4E4" size="64"></v-progress-circular>
+              <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
         </v-dialog>
@@ -147,10 +147,10 @@
           <v-card-title class="d-flex">
             <span>Patients</span>
             <v-spacer></v-spacer>
-            <v-btn class="mr-2" outlined small dark color="#F11E14" v-on:click="exportToPdf">
+            <v-btn class="mr-2" outlined small dark color="#F08200" v-on:click="exportToPdf">
               <v-icon left>mdi-file-export</v-icon>Export
             </v-btn>
-            <v-btn class="text-capitalize" outlined small dark color="#35B4E4"
+            <v-btn class="text-capitalize" outlined small dark color="#2A9B90"
               v-on:click="addPatientDialog = !addPatientDialog">
               <v-icon left>mdi-account-plus</v-icon>New Patient
             </v-btn>
@@ -162,7 +162,7 @@
             <v-data-table dense :headers="headers" v-model="selected" show-select class="elevation-3" :search="search" :items-per-page="7"
               :items="patients" :loading="loading" loading-text="loading patients">
               <template v-slot:[`item.action`]="{ item }">
-                <v-icon small class="mr-0" color="#35B4E4" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box
+                <v-icon small class="mr-0" color="#2A9B90" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box
                 </v-icon>
                 <v-icon small class="mr-0" v-on:click="selectPatientRecord(item.id)" color="secondary">mdi-pencil
                 </v-icon>

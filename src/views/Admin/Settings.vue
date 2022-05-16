@@ -41,13 +41,13 @@
                           <v-text-field type="password" v-model.trim="user.password" label="Enter password" dense prepend-icon="mdi-lock"></v-text-field>
                         </v-col>
                         </v-row>
-                        <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" class="primary">Save</v-btn>
+                        <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary">Save</v-btn>
                       </v-form>
                     </v-card-text>
                     <v-overlay absolute opacity="0" :value="overlay">
                      <v-progress-circular
                       indeterminate
-                      color="#35B4E4"
+                      color="#008F96"
                       size="64"
                     ></v-progress-circular>
                    </v-overlay>
@@ -75,13 +75,13 @@
                          <v-text-field type="password" v-model.trim="user.confirmPassword" label="Confirm new password" dense prepend-icon="mdi-lock"></v-text-field>
                         </v-col>
                       </v-row>
-                       <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" class="primary">Save</v-btn>
+                       <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary">Save</v-btn>
                       </v-form>
                     </v-card-text>
                      <v-overlay absolute opacity="0" :value="overlay">
                      <v-progress-circular
                       indeterminate
-                      color="#35B4E4"
+                      color="#008F96"
                       size="64"
                     ></v-progress-circular>
                    </v-overlay>

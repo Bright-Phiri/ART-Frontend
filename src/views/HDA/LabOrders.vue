@@ -6,7 +6,7 @@
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
                <v-spacer></v-spacer>
-               <v-btn class="mr-2" outlined small dark color="#F11E14" v-on:click="exportToPdf"><v-icon left>mdi-file-export</v-icon>Export</v-btn>
+               <v-btn class="mr-2" outlined small dark color="#F08200" v-on:click="exportToPdf"><v-icon left>mdi-file-export</v-icon>Export</v-btn>
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
