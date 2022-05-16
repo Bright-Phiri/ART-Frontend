@@ -62,7 +62,7 @@
           </div>
         </v-list>
       </v-navigation-drawer>
-      <v-app-bar app flat>
+      <v-app-bar app flat color="blue-grey lighten-5">
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           ART
@@ -107,6 +107,7 @@ export default {
         { title: 'Dashboard', icon: 'mdi-view-dashboard', route: "/" },
         { title: 'Patients', icon: 'mdi-account-multiple', route: "/patients" },
         { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/laborders" },
+        { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
         { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
       ],
       assistant: [

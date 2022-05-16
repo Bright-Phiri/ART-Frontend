@@ -133,7 +133,7 @@ const routes = [{
                     } else {
                         let loggedUser = store.state.user
                         let user_role = loggedUser.role
-                        if (user_role != "Lab Assistant") {
+                        if (user_role != "Lab Assistant" && user_role != "HDA Personnel") {
                             next({ path: "/login" })
                         } else {
                             next();

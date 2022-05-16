@@ -159,14 +159,14 @@
             <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0">
               <v-text-field outlined dense label="Search" v-model="search" append-icon="mdi-magnify"></v-text-field>
             </div>
-            <v-data-table dense :headers="headers" class="elevation-3" :search="search" :items-per-page="7"
+            <v-data-table dense :headers="headers" v-model="selected" show-select class="elevation-3" :search="search" :items-per-page="7"
               :items="patients" :loading="loading" loading-text="loading patients">
               <template v-slot:[`item.action`]="{ item }">
-                <v-icon small class="mr-2" color="#35B4E4" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box
+                <v-icon small class="mr-0" color="#35B4E4" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box
                 </v-icon>
-                <v-icon small class="mr-2" v-on:click="selectPatientRecord(item.id)" color="secondary">mdi-pencil
+                <v-icon small class="mr-0" v-on:click="selectPatientRecord(item.id)" color="secondary">mdi-pencil
                 </v-icon>
-                <v-icon small class="mr-2" color="red" v-on:click="deletePatient(item.id)">mdi-delete</v-icon>
+                <v-icon small class="mr-0" color="red" v-on:click="deletePatient(item.id)">mdi-delete</v-icon>
               </template>
             </v-data-table>
             <v-divider class="my-4 mx-0"></v-divider>
@@ -187,6 +187,7 @@ export default {
     return {
       qrCodeId: null,
       heading: 'Patients',
+      selected: [],
       patient: {
         first_name: null,
         last_name: null,
@@ -225,6 +226,7 @@ export default {
         },
         {
           text: 'First Name',
+          align: 'start',
           value: 'first_name',
         },
         {
@@ -460,10 +462,16 @@ export default {
         });
     },
     exportToPdf() {
+      let items = [];
       if (this.patients.length == 0) {
         this.$swal("Infor", "Records not found", "info");
       } else {
-        const columns = [
+          if (this.selected.length == 0){
+           items = this.patients
+          } else{
+           items = this.selected
+          }
+          const columns = [
           { title: "ID", dataKey: "id" },
           { title: "First Name", dataKey: "first_name" },
           { title: "Last Name", dataKey: "last_name" },
@@ -482,7 +490,7 @@ export default {
         // Using autoTable plugin
         doc.autoTable({
           columns,
-          body: this.patients,
+          body: items,
           //margin: { left: 0.5, top: 1.25 }
         });
         // Creating footer and saving file
