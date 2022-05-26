@@ -55,8 +55,16 @@
           value: 'blood_type',
         },
         {
-          text: 'Temperature',
-          value: 'temperature',
+          text: 'Tissue Name',
+          value: 'tissue_name',
+        },
+          {
+          text: 'Requested By',
+          value: 'requested_by',
+        },
+            {
+          text: 'Taken By',
+          value: 'taken_by',
         },
         {
           text: 'Consultation Date',

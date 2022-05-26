@@ -6,10 +6,9 @@
           <v-list-item-content>
             <v-list-item-title class="text-h4">
               <div class="d-flex">
-                <v-avatar size="40" class="text-center">
-                  <v-img src="../assets/blood_test.png"></v-img>
+                <v-avatar width="100" height="55">
+                  <v-img src="../assets/logo.png"></v-img>
                 </v-avatar>
-                <span class="text-h4 white--text">ART</span>
               </div>
             </v-list-item-title>
           </v-list-item-content>
@@ -65,8 +64,9 @@
       <v-app-bar app flat color="blue-grey lighten-5">
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
-          ART
-          <span class="red--text">MIF</span> | 
+           <v-avatar width="100" height="53">
+                  <v-img src="../assets/logo.png"></v-img>
+                </v-avatar> | 
           <span>{{time}}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
@@ -98,20 +98,20 @@ export default {
       time: null,
       date: null,
       admin: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard', route: "/" },
+        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Users', icon: 'mdi-account-multiple', route: "/users" },
         { title: 'Settings', icon: 'mdi-cogs', route: "/settings" },
         { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
       ],
       hda: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard', route: "/" },
+        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Patients', icon: 'mdi-account-multiple', route: "/patients" },
         { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/laborders" },
         { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
         { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
       ],
       assistant: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard', route: "/" },
+        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/assistant" },
         { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
         { title: 'Logout', icon: 'mdi-logout', route: "/logout" }

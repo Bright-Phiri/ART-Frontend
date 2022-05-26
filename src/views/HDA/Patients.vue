@@ -59,7 +59,7 @@
             </v-overlay>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="labOrderDialog" persistent max-width="400px">
+        <v-dialog v-model="labOrderDialog" persistent max-width="430px">
           <v-card>
             <v-card-title class="d-flex">
               <span>Consultation</span>
@@ -73,7 +73,8 @@
               <v-form ref="consultationForm" v-on:submit.prevent="addLabOrder">
                 <v-text-field label="QR Code" readonly v-model="lab_order.qrcode"></v-text-field>
                 <v-autocomplete label="Blood type" :items="blood_type" v-model="lab_order.blood_type"></v-autocomplete>
-                <v-text-field label="Blood Temperature" v-model="lab_order.temperature"></v-text-field>
+                <v-text-field label="Tissue Name" v-model="lab_order.tissue_name"></v-text-field>
+                <v-text-field label="Requested By" v-model="lab_order.requested_by"></v-text-field>
                 <div class="d-flex justify-end">
                   <v-btn v-on:click="cancelLabOrder" dark class="secondary text-capitalize">Cancel</v-btn>
                   <v-btn class="ml-2 text-capitalize" dark color="#008F96" type="submit">Add lab order</v-btn>
@@ -202,7 +203,9 @@ export default {
         patient_id: null,
         qrcode: null,
         blood_type: null,
-        temperature: null
+        tissue_name: null,
+        requested_by: null,
+        taken_by: null
       },
       blood_type: ['Group A', 'Group B', 'Group AB', 'Group O'],
       labOrderDialog: false,
@@ -331,14 +334,16 @@ export default {
       this.lab_order.patient_id = patient_id
     },
     addLabOrder() {
-      if (!this.lab_order.qrcode || !this.lab_order.blood_type || !this.lab_order.temperature) {
+      if (!this.lab_order.qrcode || !this.lab_order.blood_type || !this.lab_order.tissue_name || !this.lab_order.requested_by) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
         this.overlay = true
         let lab_orderPayload = {
           qrcode: this.lab_order.qrcode,
           blood_type: this.lab_order.blood_type,
-          temperature: this.lab_order.temperature
+          tissue_name: this.lab_order.tissue_name,
+          requested_by: this.lab_order.requested_by,
+          taken_by: this.$store.state.user.username
         }
         let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${this.lab_order.patient_id}/lab_orders`;
         axios

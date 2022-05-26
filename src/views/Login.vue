@@ -4,10 +4,9 @@
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6" xs="12" md="4" lg="3">
           <div class="d-flex justify-center">
-            <v-avatar size="40" class="text-center">
-              <v-img src="../assets/blood_test.png"></v-img>
+            <v-avatar width="100" height="60">
+              <v-img src="../assets/logo1.png"></v-img>
             </v-avatar>
-            <span class="text-h4">ART</span>
           </div>
           <v-card class="rounded-xl mt-3">
             <v-card-title>
