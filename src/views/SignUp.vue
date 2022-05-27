@@ -80,7 +80,6 @@ export default {
       if (!this.user.username || !this.user.email || !this.user.phone || !this.user.password || !this.user.password_confirmation) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
-        if (this.user.password === this.user.password_confirmation) {
           this.overlay = true
           let userPayload = {
             username: this.user.username,
@@ -100,7 +99,7 @@ export default {
                 }
                 );
               } else {
-                this.$swal(response.data.status, response.data.message, response.data.status)
+                this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
                 this.overlay = false
               }
             })
@@ -108,9 +107,6 @@ export default {
               this.$swal("Error", error + ", Couldn't reach API", "error")
               this.overlay = false
             })
-        } else {
-          this.$swal("Error", "Passwords dont match", "error");
-        }
       }
     }
   },
