@@ -64,9 +64,8 @@
       <v-app-bar app flat color="blue-grey lighten-5">
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
-           <v-avatar width="100" height="53">
-                  <v-img src="../assets/logo.png"></v-img>
-                </v-avatar> | 
+          <span class="font-weight-light">ART </span>
+          <span>TS</span> |
           <span>{{time}}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>

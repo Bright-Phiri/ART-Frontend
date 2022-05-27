@@ -144,7 +144,7 @@
             </v-overlay>
           </v-card>
         </v-dialog>
-        <v-card tile>
+        <v-card shaped class="elevation-7">
           <v-card-title class="d-flex">
             <span>Patients</span>
             <v-spacer></v-spacer>
@@ -160,7 +160,7 @@
             <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0">
               <v-text-field outlined dense label="Search" v-model="search" append-icon="mdi-magnify"></v-text-field>
             </div>
-            <v-data-table dense :headers="headers" v-model="selected" show-select class="elevation-3" :search="search" :items-per-page="7"
+            <v-data-table dense :headers="headers" v-model="selected" show-select class="elevation-4" :search="search" :items-per-page="7"
               :items="patients" :loading="loading" loading-text="loading patients">
               <template v-slot:[`item.action`]="{ item }">
                 <v-icon small class="mr-0" color="#2A9B90" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box

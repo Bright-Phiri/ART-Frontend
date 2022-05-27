@@ -6,10 +6,11 @@
            <v-card-title>Lab Order Results</v-card-title>
            <v-card-text>
               <v-form ref="resultsForm" v-on:submit.prevent="addLabOrderResults">
+                <v-text-field label="HIV Result" v-model="lab_order.hiv_res"></v-text-field>
                 <v-textarea
-                 label="Description"
+                 label="Tissue Description"
                  outlined
-                 v-model="lab_order.name"
+                 v-model="lab_order.tisuue_res"
               ></v-textarea>
               <div class="d-flex justify-end">
                 <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn> <v-btn type="submit" class="ml-2" dark color="#008F96">Save</v-btn>
@@ -26,13 +27,13 @@
          </v-card>
       </v-dialog>
       <v-col cols="12">
-          <v-card tile>
+          <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
-               <v-data-table dense :headers="headers"  class="elevation-1" :search="search" :items-per-page="7" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
+               <v-data-table dense :headers="headers"  class="elevation-4" :search="search" :items-per-page="7" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
                  <template v-slot:[`item.results`]="{ item }">
                    <v-icon small class="ml-4" color="#35B4E4" v-on:click="showAddResultsDialog(item.id, item.patient_id)">mdi-plus-box</v-icon>
                  </template>
@@ -56,7 +57,8 @@
       return {
         lab_orders:[],
         lab_order: {
-          name: null
+          hiv_res: null,
+          tisuue_res: null,
         },
         lab_order_id: null,
         overlay: false,
@@ -126,13 +128,15 @@
          this.patient_id = patient_id
       },
       addLabOrderResults(){
-        if (!this.lab_order.name){
+        if (!this.lab_order.hiv_res || !this.lab_order.tisuue_res){
           this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay = true
           let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${this.patient_id}/lab_orders/${this.lab_order_id}/results`;
           let lab_orderPayload = {
-            name: this.lab_order.name
+            hiv_res: this.lab_order.hiv_res,
+            tisuue_res: this.lab_order.tisuue_res,
+            conducted_by: this.$store.state.user.username
           }
           axios
             .post(endpoint,lab_orderPayload, {

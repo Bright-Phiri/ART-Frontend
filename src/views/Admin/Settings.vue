@@ -2,7 +2,7 @@
   <div class="home">
     <v-row>
       <v-col cols="12">
-        <v-card tile height="470">
+        <v-card shaped class="elevation-7" height="470">
           <v-card-text>
             <v-container fluid>
               <v-tabs>

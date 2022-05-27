@@ -2,12 +2,12 @@
  <div class="LabOrderResults">
     <v-row>
       <v-col cols="12">
-          <v-card tile>
-            <v-card-title class="d-flex">
+          <v-card shaped class="elevation-7">
+            <v-card-title class="d-flex mt-0">
                <span>Lab Order Results</span>
                <v-spacer></v-spacer>
-               <v-row class="d-flex justify-end">
-                 <v-col cols="4" >
+               <v-row class="d-flex justify-end" dense>
+                 <v-col cols="4" dense>
                   <v-autocomplete label="Select Results" @change="selectResults" v-model="resultsType" :items="results_types"></v-autocomplete>
                </v-col>
                </v-row>
@@ -15,7 +15,7 @@
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
-               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-1" :search="search" :items="lab_order_results" :items-per-page="7"  :loading="loading" loading-text="loading lab order results">
+               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-4" :search="search" :items="lab_order_results" :items-per-page="7"  :loading="loading" loading-text="loading lab order results">
                  <template v-slot:[`item.created_at`]="{ item }">
                     <span>{{item.created_at.substr(0, 10)}}</span>
                  </template>
@@ -62,8 +62,12 @@
           value: 'blood_type',
         },
         {
-          text: 'Temperature',
-          value: 'temperature',
+          text: 'HIV Results',
+          value: 'hiv_res',
+        },
+         {
+          text: 'Tissue Descr',
+          value: 'tisuue_res',
         },
         {
           text: 'Results Date',

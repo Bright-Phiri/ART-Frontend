@@ -88,7 +88,7 @@
              </v-overlay>
             </v-card>
           </v-dialog>
-          <v-card tile>
+          <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Manage Users</span>
                <v-spacer></v-spacer>
@@ -96,7 +96,7 @@
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
-               <v-data-table dense :headers="headers"  class="elevation-1" :search="search" :items-per-page="7" :items="users" :loading="loading" loading-text="loading users">
+               <v-data-table dense :headers="headers"  class="elevation-4" :search="search" :items-per-page="7" :items="users" :loading="loading" loading-text="loading users">
                   <template v-slot:[`item.action`]="{ item }">
                    <v-icon small v-on:click="selectUserRecord(item.id)" color="primary">mdi-pencil</v-icon>
                    <v-icon small color="red" v-on:click="deleteUser(item.id)">mdi-delete</v-icon>

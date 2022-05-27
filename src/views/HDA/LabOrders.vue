@@ -2,7 +2,7 @@
  <div class="LabOrders">
     <v-row>
       <v-col cols="12">
-          <v-card tile>
+          <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
                <v-spacer></v-spacer>
@@ -10,7 +10,7 @@
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
-               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-3" :search="search" :items-per-page="7" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
+               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-4" :search="search" :items-per-page="7" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
                  <template v-slot:[`item.created_at`]="{ item }">
                     <span>{{item.created_at.substr(0, 10)}}</span>
                  </template>
