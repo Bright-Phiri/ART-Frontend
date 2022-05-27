@@ -72,9 +72,6 @@
         {
           text: 'Results Date',
           value: 'created_at',
-        },{
-          text: 'Results',
-          value: 'name',
         }
       ],
       }
