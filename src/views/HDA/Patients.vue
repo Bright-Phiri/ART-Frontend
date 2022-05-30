@@ -145,7 +145,7 @@
           </v-card>
         </v-dialog>
         <v-card shaped class="elevation-7">
-          <v-card-title class="d-flex">
+          <v-card-title class="d-flex mt-0">
             <span>Patients</span>
             <v-spacer></v-spacer>
             <v-btn class="mr-2" outlined small dark color="#F08200" v-on:click="exportToPdf">

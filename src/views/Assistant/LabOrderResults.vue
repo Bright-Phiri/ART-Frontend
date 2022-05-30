@@ -6,11 +6,6 @@
             <v-card-title class="d-flex mt-0">
                <span>Lab Order Results</span>
                <v-spacer></v-spacer>
-               <v-row class="d-flex justify-end" dense>
-                 <v-col cols="4" dense>
-                  <v-autocomplete label="Select Results" @change="selectResults" v-model="resultsType" :items="results_types"></v-autocomplete>
-               </v-col>
-               </v-row>
                <v-btn class="mr-2 ml-4" outlined small dark color="#F08200" v-on:click="exportToPdf"><v-icon left>mdi-file-export</v-icon>Export</v-btn>
             </v-card-title>
             <v-card-text>
@@ -38,8 +33,6 @@
       return {
         lab_order_results:[],
         selected: [],
-        results_types: ['Active', 'Archieved'],
-        resultsType: null,
         loading: false,
         heading: 'Lab order Results',
         search: '',
@@ -77,21 +70,9 @@
       }
     },
     methods: {
-      selectResults(){
-        switch (this.resultsType){
-          case "Active":{
-            this.loadLabOrderResults("results");
-            break;
-          }
-          case "Archieved":{
-            this.loadLabOrderResults("results_archieve");
-            break;
-          }
-        }
-      },
-      loadLabOrderResults(resource){
+      loadLabOrderResults(){
         this.loading = true
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/${resource}`;
+        let endpoint = `${sessionStorage.getItem("BASE_URL")}/results`;
         axios
           .get(endpoint, {
               headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
@@ -139,7 +120,7 @@
     }
     },
     mounted(){
-      this.loadLabOrderResults("results");
+      this.loadLabOrderResults();
     }
   }
 </script>

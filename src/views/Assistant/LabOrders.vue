@@ -30,6 +30,12 @@
           <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
+               <v-spacer></v-spacer>
+                <v-row class="d-flex justify-end" dense>
+                 <v-col cols="4" dense>
+                  <v-autocomplete label="Select" @change="selectLabOrders" v-model="orderType" :items="order_types"></v-autocomplete>
+               </v-col>
+               </v-row>
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
@@ -55,6 +61,8 @@
     name: 'LabOrders',
     data(){
       return {
+        order_types: ['Active', 'Archieved'],
+        orderType: null,
         lab_orders:[],
         lab_order: {
           hiv_res: null,
@@ -107,9 +115,21 @@
       }
     },
     methods: {
-      loadLabOrders(){
+      selectLabOrders(){
+        switch (this.orderType){
+          case "Active":{
+            this.loadLabOrders("lab_orders");
+            break;
+          }
+          case "Archieved":{
+            this.loadLabOrders("lab_orders_archieve");
+            break;
+          }
+        }
+      },
+      loadLabOrders(resource){
         this.loading = true
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/lab_orders`;
+        let endpoint = `${sessionStorage.getItem("BASE_URL")}/${resource}`;
         axios
           .get(endpoint, {
               headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
@@ -148,6 +168,7 @@
                 this.$swal("Message", response.data.message, "success").then(()=>{
                   this.resultsDialog = false
                   this.$refs.resultsForm.reset()
+                  this.loadLabOrders("lab_orders")
                 })
               } else {
                 this.$swal(response.data.status, response.data.message, response.data.status)
@@ -166,7 +187,7 @@
       }
     },
     mounted(){
-      this.loadLabOrders()
+      this.loadLabOrders("lab_orders")
     }
   }
 </script>

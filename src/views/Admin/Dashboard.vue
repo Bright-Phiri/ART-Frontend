@@ -46,7 +46,7 @@
                         </v-avatar>
                       </v-col>
                       <v-col>
-                        <h6 class="text-center font-weight-light">Lab Orders</h6>
+                        <h6 class="text-center font-weight-light">Active Lab Orders</h6>
                         <h5 class="text-center text-white" id="patients">{{ lab_orders }}</h5>
                       </v-col>
                     </v-row>
@@ -168,7 +168,7 @@ export default {
              this.series.push(response.data.results)
           }else{
            this.options.labels.shift()
-           this.options.labels.unshift("Lab orders");
+           this.options.labels.unshift("Active Lab orders");
            this.series.push(response.data.lab_orders)
            this.series.push(response.data.patients)
            this.series.push(response.data.results)
