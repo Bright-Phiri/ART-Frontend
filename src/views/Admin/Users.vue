@@ -12,22 +12,22 @@
                    <v-container>
                       <v-row>
                         <v-col cols="12" sm="6">
-                           <v-text-field label="Username"  v-model.trim="user.username" dense></v-text-field>
+                           <v-text-field label="Username"  v-model.trim="user.attributes.username" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field type="email" label="Email"  v-model.trim="user.email" dense></v-text-field>
+                          <v-text-field type="email" label="Email"  v-model.trim="user.attributes.email" dense></v-text-field>
                        </v-col>
                        <v-col cols="12" sm="6">
-                           <v-text-field label="Phone"  v-model.trim="user.phone" dense></v-text-field>
+                           <v-text-field label="Phone"  v-model.trim="user.attributes.phone" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-autocomplete label="Role"  :items="roles" v-model.trim="user.role" dense></v-autocomplete>
+                          <v-autocomplete label="Role"  :items="roles" v-model.trim="user.attributes.role" dense></v-autocomplete>
                        </v-col>
                        <v-col cols="12" sm="6">
-                           <v-text-field type="password" label="Password"  v-model.trim="user.password" dense></v-text-field>
+                           <v-text-field type="password" label="Password"  v-model.trim="user.attributes.password" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field type="password" label="Confirm Password"  v-model.trim="user.password_confirmation" dense></v-text-field>
+                          <v-text-field type="password" label="Confirm Password"  v-model.trim="user.attributes.password_confirmation" dense></v-text-field>
                        </v-col>
                       </v-row>
                    </v-container>
@@ -55,22 +55,22 @@
                    <v-container>
                       <v-row>
                         <v-col cols="12" sm="6">
-                           <v-text-field label="Username"  v-model.trim="user.username" dense></v-text-field>
+                           <v-text-field label="Username"  v-model.trim="user.attributes.username" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field type="email" label="Email"  v-model.trim="user.email" dense></v-text-field>
+                          <v-text-field type="email" label="Email"  v-model.trim="user.attributes.email" dense></v-text-field>
                        </v-col>
                        <v-col cols="12" sm="6">
-                           <v-text-field label="Phone"  v-model.trim="user.phone" dense></v-text-field>
+                           <v-text-field label="Phone"  v-model.trim="user.attributes.phone" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-autocomplete label="Role"  :items="roles" v-model.trim="user.role" dense></v-autocomplete>
+                          <v-autocomplete label="Role"  :items="roles" v-model.trim="user.attributes.role" dense></v-autocomplete>
                        </v-col>
                        <v-col cols="12" sm="6">
-                           <v-text-field type="password" label="Password"  v-model.trim="user.password" dense></v-text-field>
+                           <v-text-field type="password" label="Password"  v-model.trim="user.attributes.password" dense></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field type="password" label="Confirm Password"  v-model.trim="user.password_confirmation" dense></v-text-field>
+                          <v-text-field type="password" label="Confirm Password"  v-model.trim="user.attributes.password_confirmation" dense></v-text-field>
                        </v-col>
                       </v-row>
                    </v-container>
@@ -120,12 +120,14 @@
         loading: false,
         overlay: false,
         user : {
-          username: null,
-          email: null,
-          phone: null,
-          role: null,
-          password: null,
-          password_confirmation: null
+          attributes: {
+            username: null,
+            email: null,
+            phone: null,
+            role: null,
+            password: null,
+            password_confirmation: null
+          }
         },
         user_id: null,
         roles: ['Lab Assistant', 'HDA Personnel'],
@@ -135,23 +137,23 @@
         {
           text: '#',
           align: 'start',
-          value: 'id',
+          value: 'attributes.id',
         },
         {
           text: 'Username',
-          value: 'username',
+          value: 'attributes.username',
         },
         {
           text: 'Email Address',
-          value: 'email',
+          value: 'attributes.email',
         },
         {
           text: 'Phone',
-          value: 'phone',
+          value: 'attributes.phone',
         },
         {
           text: 'Role',
-          value: 'role',
+          value: 'attributes.role',
         },
         {
           text: 'Action',
@@ -163,17 +165,17 @@
     },
     methods: {
       saveUser(){
-        if(!this.user.username || !this.user.email || !this.user.phone || !this.user.role || !this.user.password || !this.user.password_confirmation){
+        if(!this.user.attributes.username || !this.user.attributes.email || !this.user.attributes.phone || !this.user.attributes.role || !this.user.attributes.password || !this.user.attributes.password_confirmation){
             this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay=true
           let userPayload = {
-            username: this.user.username,
-            email: this.user.email,
-            phone: this.user.phone,
-            role: this.user.role,
-            password: this.user.password,
-            password_confirmation: this.user.password_confirmation
+            username: this.user.attributes.username,
+            email: this.user.attributes.email,
+            phone: this.user.attributes.phone,
+            role: this.user.attributes.role,
+            password: this.user.attributes.password,
+            password_confirmation: this.user.attributes.password_confirmation
           }
           let endpoint = `${sessionStorage.getItem("BASE_URL")}/users`;
           axios
@@ -200,17 +202,17 @@
         }
       },
       updateUser(){
-        if(!this.user.username || !this.user.email || !this.user.phone || !this.user.role || !this.user.password || !this.user.password_confirmation){
+        if(!this.user.attributes.username || !this.user.attributes.email || !this.user.attributes.phone || !this.user.attributes.role || !this.user.attributes.password || !this.user.attributes.password_confirmation){
             this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay=true
           let userPayload = {
-            username: this.user.username,
-            email: this.user.email,
-            phone: this.user.phone,
-            role: this.user.role,
-            password: this.user.password,
-            password_confirmation: this.user.password_confirmation
+            username: this.user.attributes.username,
+            email: this.user.attributes.email,
+            phone: this.user.attributes.phone,
+            role: this.user.attributes.role,
+            password: this.user.attributes.password,
+            password_confirmation: this.user.attributes.password_confirmation
           }
           let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${this.user_id}`;
           axios
@@ -244,7 +246,7 @@
               headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
             })
           .then((response) => {
-            this.users = response.data.data
+            this.users = response.data.data.data
             this.loading = false
            })
            .catch((error) => {
@@ -258,7 +260,7 @@
               headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
             })
            .then((response) =>{
-             this.user = response.data.data
+             this.user = response.data.data.data
              this.user_id = user_id
              this.editUserDialog = true
            })

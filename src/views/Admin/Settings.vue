@@ -115,9 +115,6 @@ export default {
     };
   },
   methods:{
-    selectFile(files) {
-      this.user.avatar = files;
-    },
     updateUser(){
       if (!this.user.username || !this.user.email || !this.user.phone || !this.user.password){
         this.$swal("Fields validation","Please fill in all required fields","warning");
