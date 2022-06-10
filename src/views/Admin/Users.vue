@@ -156,7 +156,7 @@
           value: 'attributes.role',
         },
         {
-          text: 'Action',
+          text: 'Actions',
           value: 'action',
         }
       ],

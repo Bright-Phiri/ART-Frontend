@@ -259,7 +259,7 @@ export default {
           text: 'Location',
           value: 'location',
         }, {
-          text: 'Action',
+          text: 'Actions',
           value: 'action',
         }
       ],

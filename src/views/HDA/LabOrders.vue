@@ -76,6 +76,10 @@
         {
           text: 'Consultation Date',
           value: 'created_at',
+        },
+        {
+          text: 'Verified',
+          value:'verified'
         }
       ],
       }
