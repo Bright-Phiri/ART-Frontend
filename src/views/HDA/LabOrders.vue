@@ -15,10 +15,20 @@
             </v-card-title>
             <v-card-text>
               <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
-               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-4" :search="search" :items-per-page="7" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
+               <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-4" :search="search" :items-per-page="6" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
                  <template v-slot:[`item.created_at`]="{ item }">
                     <span>{{item.created_at.substr(0, 10)}}</span>
                  </template>
+                 <template v-slot:[`item.verified`]="{ item }">
+                   <v-chip
+                      small
+                      style="width:50px"
+                      :color="getColor(item.verified)"
+                      dark
+                    >
+                    {{ item.verified }}
+                 </v-chip>
+                </template>
                </v-data-table>
                <v-divider class="my-4 mx-0"></v-divider>
             </v-card-text>
@@ -97,6 +107,10 @@
           }
         }
       },
+      getColor (verified) {
+        if (verified) return 'green'
+        else return 'red'
+      },
       loadLabOrders(resource){
         this.loading = true
         let endpoint = `${sessionStorage.getItem("BASE_URL")}/${resource}`;
@@ -126,8 +140,9 @@
         { title: "ID", dataKey: "id" },
         { title: "Patient ID", dataKey: "patient_id" },
         { title: "QRcode", dataKey: "qrcode" },
-        { title: "Blood Type", dataKey: "blood_type" },
-        { title: "Blood Temperature", dataKey: "temperature" },
+        { title: "Tissue Name", dataKey: "tissue_name" },
+        { title: "Requested By", dataKey: "requested_by" },
+        { title: "Taken By", dataKey: "taken_by" },
         { title: "Consultation Date", dataKey: "created_at" },
       ];
       const doc = new jsPDF({
