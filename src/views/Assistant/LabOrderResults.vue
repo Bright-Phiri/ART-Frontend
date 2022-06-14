@@ -59,7 +59,7 @@
           value: 'hiv_res',
         },
          {
-          text: 'Tissue Descr',
+          text: 'Sample Type',
           value: 'tisuue_res',
         },
         {

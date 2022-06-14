@@ -73,7 +73,7 @@
               <v-form ref="consultationForm" v-on:submit.prevent="addLabOrder">
                 <v-text-field label="QR Code" readonly v-model="lab_order.qrcode"></v-text-field>
                 <v-autocomplete label="Blood type" :items="blood_type" v-model="lab_order.blood_type"></v-autocomplete>
-                <v-text-field label="Tissue Name" v-model="lab_order.tissue_name"></v-text-field>
+                <v-text-field label="Sample Type" v-model="lab_order.tissue_name"></v-text-field>
                 <v-text-field label="Requested By" v-model="lab_order.requested_by"></v-text-field>
                 <div class="d-flex justify-end">
                   <v-btn v-on:click="cancelLabOrder" dark class="secondary text-capitalize">Cancel</v-btn>

@@ -72,7 +72,7 @@
           value: 'blood_type',
         },
         {
-          text: 'Tissue Name',
+          text: 'Sample Type',
           value: 'tissue_name',
         },
           {
