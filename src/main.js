@@ -8,11 +8,18 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueApexCharts from 'vue-apexcharts'
 import VueQRCodeComponent from 'vue-qrcode-component'
+import ActionCableVue from "actioncable-vue";
 import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2, VueAxios, axios)
 Vue.use(VueApexCharts)
+Vue.use(ActionCableVue, {
+    debug: true,
+    debugLevel: "error",
+    connectionUrl: "ws://localhost:3000/cable",
+    connectImmediately: true,
+});
 Vue.component('apexchart', VueApexCharts)
 Vue.component('qr-code', VueQRCodeComponent)
 

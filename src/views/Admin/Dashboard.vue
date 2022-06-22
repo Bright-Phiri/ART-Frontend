@@ -114,8 +114,6 @@
 </template>
 
 <script>
-
-import axios from 'axios'
 export default {
   name: 'Dashboard',
   data() {
@@ -148,37 +146,61 @@ export default {
       series: [],
     }
   },
-  methods: {
-    statistics() {
-      let endpoint = `${sessionStorage.getItem("BASE_URL")}/statistics`;
-      axios
-        .get(endpoint, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`,
-          },
-        })
-        .then((response) => {
-          this.patients = response.data.patients;
-          this.lab_orders = response.data.lab_orders;
-          this.users = response.data.users;
-          this.results = response.data.results
-          if(this.user_role === "Admin"){
-             this.series.push(response.data.users)
-             this.series.push(response.data.patients)
-             this.series.push(response.data.results)
-          }else{
-           this.options.labels.shift()
-           this.options.labels.unshift("Active Lab orders");
-           this.series.push(response.data.lab_orders)
-           this.series.push(response.data.patients)
-           this.series.push(response.data.results)
-          }
-        })
-        .catch((error) => {
-          this.$swal("Error", error + ", Couldn't reach API", "error");
-        });
+  channels: {
+    NotificationChannel: {
+      connected() {},
+      rejected() {},
+      received(data) {
+        switch (data.res) {
+          case "all":
+            this.statistics(data)
+            this.labOrdersStati(data)
+            break;
+          case "patients":
+            this.patients = data.patients
+            break;
+          case "users":
+            this.users = data.users
+            break;
+          case "lab_orders":
+            this.labOrdersStati(data)
+            break;
+          case "lab_orders_count":
+            this.lab_orders = data.lab_orders_count
+            this.labOrdersStati(data)
+            break;
+          case "results":
+            this.results = data.results
+            break;
+          default:
+            this.statistics(data)
+            this.labOrdersStati(data)
+            break;
+        }
+      },
+      disconnected() {},
     },
-    labOrdersStati() {
+  },
+  methods: {
+    statistics(data) {
+      this.patients = data.patients;
+      this.lab_orders = data.lab_orders_count;
+      this.users = data.users;
+      this.results = data.results
+      if(this.user_role === "Admin"){
+        this.series.push(data.users)
+        this.series.push(data.patients)
+        this.series.push(data.results)
+      }else{
+      this.options.labels.shift()
+        this.options.labels.unshift("Active Lab orders");
+      this.series = []
+      this.series.push(data.lab_orders_count)
+      this.series.push(data.patients)
+      this.series.push(data.results)
+      }
+    },
+    labOrdersStati(data) {
       let januaryCounter = 0;
       let februaryCounter = 0;
       let marchCounter = 0;
@@ -191,16 +213,8 @@ export default {
       let octCounter = 0;
       let novemberCounter = 0;
       let decemberCounter = 0;
-      let endpoint = `${sessionStorage.getItem("BASE_URL")}/lab_orders_statistics`;
-      axios
-        .get(endpoint, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`,
-          },
-        })
-        .then((response) => {
-          let lab_orders = response.data.lab_orders
-          for (let lab_order of lab_orders) {
+      let lab_orders = data.lab_orders
+      for (let lab_order of lab_orders) {
             let order_date = new Date(lab_order.created_at)
             switch (order_date.getMonth()) {
               case 0:
@@ -257,15 +271,12 @@ export default {
           this.stati = [{
             data: newData
           }]
-        })
-        .catch((error) => {
-          this.$swal("Error", error + ", Couldn't reach API", "error");
-        });
-    }
+      }
   },
   mounted() {
-    this.statistics();
-    this.labOrdersStati()
+    this.$cable.subscribe({
+      channel: "NotificationChannel",
+    });
     let loggedUser = this.$store.state.user
     this.user_role = loggedUser.role
   }
