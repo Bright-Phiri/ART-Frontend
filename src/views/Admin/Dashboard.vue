@@ -187,18 +187,24 @@ export default {
       this.lab_orders = data.lab_orders_count;
       this.users = data.users;
       this.results = data.results
-      if(this.user_role === "Admin"){
+      if (this.user_role === "Admin") {
+        this.clearChart(this.series); 
         this.series.push(data.users)
         this.series.push(data.patients)
         this.series.push(data.results)
       }else{
       this.options.labels.shift()
-        this.options.labels.unshift("Active Lab orders");
-      this.series = []
+      this.options.labels.unshift("Active Lab orders");
+      this.clearChart(this.series); 
       this.series.push(data.lab_orders_count)
       this.series.push(data.patients)
       this.series.push(data.results)
       }
+    },
+    clearChart(series) {
+      while (series.length) {
+        series.pop();
+      } 
     },
     labOrdersStati(data) {
       let januaryCounter = 0;
