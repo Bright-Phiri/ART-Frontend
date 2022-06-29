@@ -147,7 +147,7 @@ export default {
     }
   },
   channels: {
-    NotificationChannel: {
+    DashboardChannel: {
       connected() {},
       rejected() {},
       received(data) {
@@ -207,18 +207,7 @@ export default {
       } 
     },
     labOrdersStati(data) {
-      let januaryCounter = 0;
-      let februaryCounter = 0;
-      let marchCounter = 0;
-      let apilrCounter = 0;
-      let mayCounter = 0;
-      let juneCounter = 0;
-      let julyCounter = 0;
-      let augustCounter = 0;
-      let septembeCounter = 0;
-      let octCounter = 0;
-      let novemberCounter = 0;
-      let decemberCounter = 0;
+      let januaryCounter,februaryCounter,marchCounter,apilrCounter,mayCounter,juneCounter,julyCounter,augustCounter,septembeCounter,octCounter,novemberCounter,decemberCounter = 0;
       let lab_orders = data.lab_orders
       for (let lab_order of lab_orders) {
             let order_date = new Date(lab_order.created_at)
@@ -281,7 +270,7 @@ export default {
   },
   mounted() {
     this.$cable.subscribe({
-      channel: "NotificationChannel",
+      channel: "DashboardChannel",
     });
     let loggedUser = this.$store.state.user
     this.user_role = loggedUser.role
