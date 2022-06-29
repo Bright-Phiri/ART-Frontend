@@ -158,9 +158,11 @@ export default {
             break;
           case "patients":
             this.patients = data.patients
+            this.updateChart(this.series, 1, this.patients);
             break;
           case "users":
             this.users = data.users
+            this.updateChart(this.series, 0, this.users);
             break;
           case "lab_orders":
             this.labOrdersStati(data)
@@ -168,9 +170,11 @@ export default {
           case "lab_orders_count":
             this.lab_orders = data.lab_orders_count
             this.labOrdersStati(data)
+            this.updateChart(this.series, 0, this.lab_orders);
             break;
           case "results":
             this.results = data.results
+            this.updateChart(this.series, 2, this.results);
             break;
           default:
             this.statistics(data)
@@ -182,6 +186,15 @@ export default {
     },
   },
   methods: {
+    updateChart(array, index, data) {
+      var arr = this.updateChartSeries(array, index, data);
+      arr.push()
+      this.series = arr
+    },
+    updateChartSeries(array, index, newValue) {
+      array[index] = newValue;
+      return array;
+    },
     statistics(data) {
       this.patients = data.patients;
       this.lab_orders = data.lab_orders_count;
