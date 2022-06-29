@@ -17,7 +17,7 @@ Vue.use(VueApexCharts)
 Vue.use(ActionCableVue, {
     debug: true,
     debugLevel: "error",
-    connectionUrl: "ws://antiviraltreatementapi.herokuapp.com/cable",
+    connectionUrl: "wss://antiviraltreatementapi.herokuapp.com/cable",
     connectImmediately: true,
 });
 Vue.component('apexchart', VueApexCharts)
