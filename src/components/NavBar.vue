@@ -78,7 +78,7 @@
       </v-app-bar>
     </nav>
     <router-view />
-    <Footer></Footer>
+    
   </div>
 </template>
 
