@@ -23,6 +23,9 @@
                         <v-col cols="12" sm="6">
                           <v-autocomplete label="Role"  :items="roles" v-model.trim="user.attributes.role" dense></v-autocomplete>
                        </v-col>
+                       <v-col cols="12">
+                          <v-file-input accept="image/*" show-size label="Avatar" v-on:change="selectFile"></v-file-input>
+                       </v-col>
                        <v-col cols="12" sm="6">
                            <v-text-field type="password" label="Password"  v-model.trim="user.attributes.password" dense></v-text-field>
                         </v-col>
@@ -66,6 +69,9 @@
                         <v-col cols="12" sm="6">
                           <v-autocomplete label="Role"  :items="roles" v-model.trim="user.attributes.role" dense></v-autocomplete>
                        </v-col>
+                       <v-col cols="12">
+                         <v-file-input accept="image/*" dense show-size label="Avatar" v-on:change="selectFile"></v-file-input>
+                       </v-col>
                        <v-col cols="12" sm="6">
                            <v-text-field type="password" label="Password"  v-model.trim="user.attributes.password" dense></v-text-field>
                         </v-col>
@@ -88,7 +94,7 @@
              </v-overlay>
             </v-card>
           </v-dialog>
-          <v-card shaped class="elevation-7">
+          <v-card tile class="elevation-7">
             <v-card-title class="d-flex">
                <span>Manage Users</span>
                <v-spacer></v-spacer>
@@ -124,6 +130,7 @@
             username: null,
             email: null,
             phone: null,
+            avatar: null,
             role: null,
             password: null,
             password_confirmation: null
@@ -164,19 +171,22 @@
       }
     },
     methods: {
+      selectFile(files) {
+        this.user.attributes.avatar = files;
+      },
       saveUser(){
-        if(!this.user.attributes.username || !this.user.attributes.email || !this.user.attributes.phone || !this.user.attributes.role || !this.user.attributes.password || !this.user.attributes.password_confirmation){
+        if(!this.user.attributes.username || !this.user.attributes.email || !this.user.attributes.phone || !this.user.attributes.role || !this.user.attributes.password || !this.user.attributes.password_confirmation || !this.user.attributes.avatar){
             this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay=true
-          let userPayload = {
-            username: this.user.attributes.username,
-            email: this.user.attributes.email,
-            phone: this.user.attributes.phone,
-            role: this.user.attributes.role,
-            password: this.user.attributes.password,
-            password_confirmation: this.user.attributes.password_confirmation
-          }
+          var userPayload = new FormData();
+          userPayload.append("username", this.user.attributes.username);
+          userPayload.append("email", this.user.attributes.email);
+          userPayload.append("phone", this.user.attributes.phone);
+          userPayload.append("avatar", this.user.attributes.avatar);
+          userPayload.append("role", this.user.attributes.role);
+          userPayload.append("password", this.user.attributes.password);
+          userPayload.append("password_confirmation",this.user.attributes.password_confirmation);
           let endpoint = `${sessionStorage.getItem("BASE_URL")}/users`;
           axios
             .post(endpoint,userPayload, {
@@ -206,14 +216,14 @@
             this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay=true
-          let userPayload = {
-            username: this.user.attributes.username,
-            email: this.user.attributes.email,
-            phone: this.user.attributes.phone,
-            role: this.user.attributes.role,
-            password: this.user.attributes.password,
-            password_confirmation: this.user.attributes.password_confirmation
-          }
+          var userPayload = new FormData();
+          userPayload.append("username", this.user.attributes.username);
+          userPayload.append("email", this.user.attributes.email);
+          userPayload.append("phone", this.user.attributes.phone);
+          userPayload.append("avatar", this.user.attributes.avatar);
+          userPayload.append("role", this.user.attributes.role);
+          userPayload.append("password", this.user.attributes.password);
+          userPayload.append("password_confirmation",this.user.attributes.password_confirmation);
           let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${this.user_id}`;
           axios
             .put(endpoint,userPayload, {

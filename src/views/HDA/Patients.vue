@@ -49,8 +49,8 @@
                   </v-row>
                 </v-container>
                 <div class="d-flex justify-end">
-                  <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn>
-                  <v-btn type="submit" class="ml-2" dark color="#008F96">Save</v-btn>
+                  <v-btn v-on:click="cancel" class="secondary text-capitalize">Cancel</v-btn>
+                  <v-btn type="submit" class="ml-2 text-capitalize" dark color="#008F96">Save</v-btn>
                 </div>
               </v-form>
             </v-card-text>
@@ -144,11 +144,11 @@
             </v-overlay>
           </v-card>
         </v-dialog>
-        <v-card shaped class="elevation-7">
+        <v-card tile class="elevation-7">
           <v-card-title class="d-flex mt-0">
             <span>Patients</span>
             <v-spacer></v-spacer>
-            <v-btn class="mr-2" outlined small dark color="#F08200" v-on:click="exportToPdf">
+            <v-btn class="mr-2 text-capitalize" outlined small dark color="#F08200" v-on:click="exportToPdf">
               <v-icon left>mdi-file-export</v-icon>Export
             </v-btn>
             <v-btn class="text-capitalize" outlined small dark color="#2A9B90"

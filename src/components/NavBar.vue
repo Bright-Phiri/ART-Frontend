@@ -14,7 +14,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider class="mx-2"></v-divider>
+        <v-divider class="mx-2 grey"></v-divider>
 
         <v-list dense nav shaped>
           <div v-if="user_role === 'Admin'">
@@ -64,14 +64,28 @@
       <v-app-bar app flat color="blue-grey lighten-5">
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
-          <span class="font-weight-light">ART </span>
-          <span>TS</span> |
+          <span class="font-weight-light">ART </span>|
           <span>{{time}}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <div class="d-flex">
-          <v-badge bordered bottom color="green" dot offset-x="10" offset-y="10">
-            <v-icon size="25">mdi-account-circle</v-icon>
+           <v-badge
+            bordered
+            bottom
+            color="green accent-4"
+            dot
+            offset-x="10"
+            offset-y="10"
+          >
+            <v-avatar size="30">
+              <v-img :src="user.avatar">
+                <template v-slot:placeholder>
+                  <v-sheet>
+                    <v-skeleton-loader type="image"> </v-skeleton-loader>
+                  </v-sheet>
+                </template>
+              </v-img>
+            </v-avatar>
           </v-badge>
           <span class="ml-2">{{user.username}}</span>
         </div>
@@ -93,6 +107,7 @@ export default {
     return {
       drawer: null,
       user_name: null,
+      avatar: null,
       user_role: null,
       time: null,
       date: null,
@@ -135,6 +150,7 @@ export default {
 
   mounted() {
     let loggedUser = this.$store.state.user
+    this.avatar = loggedUser.avatar
     this.user_role = loggedUser.role
     this.printTime();
   }

@@ -13,7 +13,7 @@
                  v-model="lab_order.tisuue_res"
               ></v-textarea>
               <div class="d-flex justify-end">
-                <v-btn v-on:click="cancel" class="secondary">Cancel</v-btn> <v-btn type="submit" class="ml-2" dark color="#008F96">Save</v-btn>
+                <v-btn v-on:click="cancel" class="secondary text-capitalize">Cancel</v-btn> <v-btn type="submit" class="ml-2 text-capitalize" dark color="#008F96">Save</v-btn>
               </div>
               </v-form>
            </v-card-text>
@@ -27,7 +27,7 @@
          </v-card>
       </v-dialog>
       <v-col cols="12">
-          <v-card shaped class="elevation-7">
+          <v-card tile class="elevation-7">
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
                <v-spacer></v-spacer>

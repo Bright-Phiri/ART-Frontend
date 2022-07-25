@@ -84,6 +84,7 @@ export default {
             if (response.data.status === "success") {
               sessionStorage.setItem("Authorization", response.data.token);
               let user = response.data.user
+              user.avatar = response.data.avatar
               this.$store.commit('setUser', user)
               sessionStorage.setItem("temp_pass", this.user.password);
               this.overlay = false

@@ -2,7 +2,7 @@
   <div class="home">
     <v-row>
       <v-col cols="12">
-        <v-card shaped class="elevation-7" height="470">
+        <v-card tile class="elevation-7" height="480">
           <v-card-text>
             <v-container fluid>
               <v-tabs>
@@ -20,7 +20,7 @@
                       Update User Info
                     </v-card-title>
                     <v-card-text>
-                      <v-form v-on:submit.prevent="updateUser">
+                      <v-form v-on:submit.prevent="updateUser" enctype="multipart/form-data">
                         <v-row dense>
                         <v-col cols="12" xl="5" lg="6" sm="7" md="7">
                           <v-text-field v-model.trim="user.username" label="Username" dense prepend-icon="mdi-account"></v-text-field>
@@ -38,10 +38,15 @@
                         </v-row>
                         <v-row dense>
                         <v-col cols="12" xl="5" lg="6" sm="7" md="7">
+                          <v-file-input accept="image/*" v-model="user.avatar1" dense show-size label="Avatar" v-on:change="selectFile"></v-file-input>
+                        </v-col>
+                        </v-row>
+                        <v-row dense>
+                        <v-col cols="12" xl="5" lg="6" sm="7" md="7">
                           <v-text-field type="password" v-model.trim="user.password" label="Enter password" dense prepend-icon="mdi-lock"></v-text-field>
                         </v-col>
                         </v-row>
-                        <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary">Save</v-btn>
+                        <v-btn class="secondary text-capitalize">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary text-capitalize">Save</v-btn>
                       </v-form>
                     </v-card-text>
                     <v-overlay absolute opacity="0" :value="overlay">
@@ -75,7 +80,7 @@
                          <v-text-field type="password" v-model.trim="user.confirmPassword" label="Confirm new password" dense prepend-icon="mdi-lock"></v-text-field>
                         </v-col>
                       </v-row>
-                       <v-btn class="secondary">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary">Save</v-btn>
+                       <v-btn class="secondary text-capitalize">Cancel</v-btn>  <v-btn type="submit" color="#008F96" class="primary text-capitalize">Save</v-btn>
                       </v-form>
                     </v-card-text>
                      <v-overlay absolute opacity="0" :value="overlay">
@@ -107,6 +112,8 @@ export default {
         username: null,
         email: null,
         phone: null,
+        avatar: null,
+        avatar1: null,
         password: null,
         oldPassword: null,
         newPassword: null,
@@ -123,13 +130,12 @@ export default {
          let pass = sessionStorage.getItem("temp_pass")
          const user = this.$store.state.user
          if (pass === this.user.password){
-            let userPayload = {
-                username: this.user.username,
-                email: this.user.email,
-                phone: this.user.phone,
-                password: this.user.password,
-                password_confirmation: this.user.password
-            }
+            var userPayload = new FormData();
+            userPayload.append("username", this.user.username);
+            userPayload.append("email", this.user.email);
+            userPayload.append("phone", this.user.phone);
+            userPayload.append("avatar", this.user.avatar);
+            userPayload.append("password", this.user.password);
             let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${user.id}`;
             axios
                .put(endpoint,userPayload, {
@@ -143,6 +149,7 @@ export default {
                    this.$swal("Message", response.data.message, "success").then(()=>{
                      this.user.password = null
                      let updUser = response.data.data
+                     updUser.avatar = response.data.avatar
                      this.$store.commit('setUser', updUser)
                    })
                 } else {
@@ -159,6 +166,9 @@ export default {
            this.$swal("Error","Old password is incorrect","error");
          }
       }
+    },
+    selectFile(files) {
+      this.user.avatar = files;
     },
     changePassword(){
        if (!this.user.oldPassword || !this.user.newPassword || !this.user.confirmPassword){
@@ -205,6 +215,8 @@ export default {
       this.user.username = user.username
       this.user.email = user.email
       this.user.phone = user.phone
+     
+      console.log("Avatar: "+this.user.avatar);
     }
   },
   mounted(){
