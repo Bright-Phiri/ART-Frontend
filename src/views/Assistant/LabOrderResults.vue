@@ -91,17 +91,16 @@
           this.$swal("Infor", "Records not found", "info");
         } else {
           if (this.selected.length == 0){
-           items = this.patients
+           items = this.lab_order_results
           } else{
            items = this.selected
           }
        const columns = [
-        { title: "Order ID", dataKey: "lab_order_id" },
+        { title: "Lab Order ID", dataKey: "lab_order_id" },
         { title: "Patient Name", dataKey: "patient_name" },
-        { title: "Blood Type", dataKey: "blood_type" },
-        { title: "Blood Temperature", dataKey: "temperature" },
+        { title: "HIV Results", dataKey: "hiv_res" },
+        { title: "Tissue Results", dataKey: "tisuue_res" },
         { title: "Results Date", dataKey: "created_at" },
-        { title: "Results ", dataKey: "name" },
       ];
       const doc = new jsPDF({
         orientation: "portrait",
