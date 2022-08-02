@@ -6,10 +6,10 @@
             <v-card-title class="d-flex mt-0">
                <span>Lab Order Results</span>
                <v-spacer></v-spacer>
-               <v-btn class="mr-2 ml-4 text-capitalize" outlined small dark color="#F08200" v-on:click="exportToPdf"><v-icon left>mdi-file-export</v-icon>Export</v-btn>
+               <v-btn class="mr-2 ml-4 text-capitalize" outlined small dark color="#F08200" v-on:click="exportToPdf"><v-icon left>mdi-file-export</v-icon>Export all</v-btn>
             </v-card-title>
             <v-card-text>
-              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
+              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field rounded outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
                <v-data-table dense :headers="headers" show-select v-model="selected" class="elevation-4" :search="search" :items="lab_order_results" :items-per-page="7"  :loading="loading" loading-text="loading lab order results">
                  <template v-slot:[`item.created_at`]="{ item }">
                     <span>{{item.created_at.substr(0, 10)}}</span>

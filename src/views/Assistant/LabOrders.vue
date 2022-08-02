@@ -38,7 +38,7 @@
                </v-row>
             </v-card-title>
             <v-card-text>
-              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Scan Qrcode" v-on:change="verify" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
+              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field rounded outlined dense label="Scan Qrcode" v-on:change="verify" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
                <v-data-table dense :headers="headers"  class="elevation-4" :search="search" :items-per-page="6" :items="lab_orders" :loading="loading" loading-text="loading lab orders">
                  <template v-slot:[`item.results`]="{ item }">
                    <v-icon small class="ml-4" color="#35B4E4" v-on:click="showAddResultsDialog(item.id, item.patient_id)">mdi-plus-box</v-icon>

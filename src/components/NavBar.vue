@@ -1,14 +1,21 @@
 <template>
   <div name="NavBar">
     <nav>
-      <v-navigation-drawer color="#008F96" app v-model="drawer">
+      <v-navigation-drawer color="#008F96" app  v-model="drawer" :mini-variant.sync="mini">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="text-h4">
-              <div class="d-flex">
+              <div class="d-flex justify-space-between">
                 <v-avatar width="100" height="55">
                   <v-img src="../assets/logo.png"></v-img>
                 </v-avatar>
+                <v-btn
+                   icon
+                   @click.stop="mini = !mini"
+                   class="d-none d-xl-flex d-none d-lg-flex d-xl-none"
+                >
+                  <v-icon>mdi-chevron-left</v-icon>
+                </v-btn>
               </div>
             </v-list-item-title>
           </v-list-item-content>
@@ -31,9 +38,14 @@
 
           <div v-if="user_role === 'HDA Personnel'">
             <v-list-item dense v-for="item in hda" :key="item.title" link router :to="item.route">
-              <v-list-item-icon>
-                <v-icon color="#F3F1E6">{{ item.icon }}</v-icon>
-              </v-list-item-icon>
+               <v-list-item-icon>
+             <v-tooltip right>
+               <template v-slot:activator="{ on, attrs }">
+                 <v-icon  v-bind="attrs" v-on="on" color="#F3F1E6">{{ item.icon }}</v-icon>
+               </template>
+               <span>{{item.title}}</span>
+             </v-tooltip>  
+          </v-list-item-icon>
 
               <v-list-item-content>
                 <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
@@ -62,7 +74,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-app-bar app flat color="blue-grey lighten-5">
-        <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon class="grey--text d-xl-none d-lg-none d-xl-flex" v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="font-weight-light">ART </span>|
           <span>{{time}}</span>
@@ -105,7 +117,8 @@ export default {
   },
   data() {
     return {
-      drawer: null,
+      drawer: true,
+      mini: true,
       user_name: null,
       avatar: null,
       user_role: null,

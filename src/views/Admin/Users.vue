@@ -101,7 +101,7 @@
                <v-btn class="text-capitalize" dark color="#2A9B90" v-on:click="addUserDialog = !addUserDialog" small outlined><v-icon left>mdi-account-plus</v-icon>New User</v-btn>
             </v-card-title>
             <v-card-text>
-              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
+              <div class="col-lg-3 col-xl-3 col-xm-12 col-sm-5 col-md-3 pa-0"> <v-text-field rounded outlined dense label="Search" v-model="search"  append-icon="mdi-magnify"></v-text-field></div>
                <v-data-table dense :headers="headers"  class="elevation-4" :search="search" :items-per-page="7" :items="users" :loading="loading" loading-text="loading users">
                   <template v-slot:[`item.action`]="{ item }">
                    <v-icon small v-on:click="selectUserRecord(item.id)" color="primary">mdi-pencil</v-icon>
