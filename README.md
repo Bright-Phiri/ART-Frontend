@@ -25,11 +25,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ## Screenshots
-<img width="960" alt="Screenshot 2022-08-03 073709" src="https://user-images.githubusercontent.com/75673222/182532713-62e3e384-4863-4f70-8e77-5dbbba285e2d.png">
-<img width="960" alt="Screenshot 2022-08-03 073735" src="https://user-images.githubusercontent.com/75673222/182532720-891f4907-1e41-468f-964a-bfb3970b3917.png">
-<img width="959" alt="Screenshot 2022-08-03 073812" src="https://user-images.githubusercontent.com/75673222/182532723-1c58c3b8-6d09-4e71-88c8-ca41d5ec5d53.png">
-<img width="954" alt="Screenshot 2022-08-03 073832" src="https://user-images.githubusercontent.com/75673222/182532727-1123211b-7b6b-44f8-b394-78975e404a36.png">
-<img width="960" alt="Screenshot 2022-08-03 073904" src="https://user-images.githubusercontent.com/75673222/182532734-270b81cf-c73a-4cee-986b-456e9a76b746.png">
-<img width="960" alt="Screenshot 2022-08-03 073926" src="https://user-images.githubusercontent.com/75673222/182532736-cffdf888-2fcf-4de1-a139-dce069ea5be3.png">
-<img width="960" alt="Screenshot 2022-08-03 074007" src="https://user-images.githubusercontent.com/75673222/182532739-bb168d22-18a7-43dc-8f7d-04fb3f6d7b9a.png">
-<img width="960" alt="Screenshot 2022-08-03 074042" src="https://user-images.githubusercontent.com/75673222/182532741-163d00cb-280d-4983-b568-3857938a917d.png">
+<img width="960" alt="Screenshot 2022-08-03 095318" src="https://user-images.githubusercontent.com/75673222/182555623-5bea4b70-4f1e-42c7-a873-814c2f96babd.png">
+<img width="960" alt="Screenshot 2022-08-03 095337" src="https://user-images.githubusercontent.com/75673222/182555640-aa7d10f6-514e-4225-959a-906172855537.png">
+<img width="959" alt="Screenshot 2022-08-03 095354" src="https://user-images.githubusercontent.com/75673222/182555643-95a522c5-5917-4f23-b01f-16cadbbd809d.png">
+<img width="960" alt="Screenshot 2022-08-03 095425" src="https://user-images.githubusercontent.com/75673222/182555654-d4c1a399-f8eb-444e-8d2d-57d640bf5b75.png">
+<img width="960" alt="Screenshot 2022-08-03 095447" src="https://user-images.githubusercontent.com/75673222/182555656-4ecbbb30-4fe4-4e2c-99e5-3092973a6b82.png">
+<img width="959" alt="Screenshot 2022-08-03 095515" src="https://user-images.githubusercontent.com/75673222/182555664-3bbee8fd-86f5-4366-83ca-c7e53c44887c.png">
+<img width="959" alt="Screenshot 2022-08-03 095534" src="https://user-images.githubusercontent.com/75673222/182555667-a39516f0-a5fb-41a3-9d7d-aee7083486a6.png">
+<img width="960" alt="Screenshot 2022-08-03 095602" src="https://user-images.githubusercontent.com/75673222/182555670-153c0b2b-b4a4-4b24-ab43-914bf56fc3a0.png">
+<img width="960" alt="Screenshot 2022-08-03 095639" src="https://user-images.githubusercontent.com/75673222/182555672-cb237df0-7c41-421c-a40f-6ee2b30b30fd.png">
+<img width="960" alt="Screenshot 2022-08-03 095700" src="https://user-images.githubusercontent.com/75673222/182555675-864965b8-1d6d-4ade-9917-c2ba21e2bebe.png">
