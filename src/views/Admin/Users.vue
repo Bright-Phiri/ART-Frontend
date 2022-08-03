@@ -94,7 +94,7 @@
              </v-overlay>
             </v-card>
           </v-dialog>
-          <v-card tile class="elevation-7">
+          <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Manage Users</span>
                <v-spacer></v-spacer>

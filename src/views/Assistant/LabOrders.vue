@@ -27,7 +27,7 @@
          </v-card>
       </v-dialog>
       <v-col cols="12">
-          <v-card tile class="elevation-7">
+          <v-card shaped class="elevation-7">
             <v-card-title class="d-flex">
                <span>Lab Orders</span>
                <v-spacer></v-spacer>

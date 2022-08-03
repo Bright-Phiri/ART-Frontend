@@ -144,7 +144,7 @@
             </v-overlay>
           </v-card>
         </v-dialog>
-        <v-card tile class="elevation-7">
+        <v-card shaped class="elevation-7">
           <v-card-title class="d-flex mt-0">
             <span>Patients</span>
             <v-spacer></v-spacer>
