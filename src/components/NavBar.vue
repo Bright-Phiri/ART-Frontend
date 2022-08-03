@@ -76,7 +76,7 @@
       <v-app-bar app flat color="blue-grey lighten-5">
         <v-app-bar-nav-icon class="grey--text d-xl-none d-lg-none d-xl-flex" v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
-          <span class="font-weight-light">ART </span>|
+          <span class="text-color">ART </span>|
           <span>{{time}}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
@@ -179,5 +179,8 @@ export default {
 .page-enter, .page-leave-to {
   opacity: 0;
   transform: translateX(-2%);
+}
+.text-color{
+  color: #F25039;
 }
 </style>
