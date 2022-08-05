@@ -16,7 +16,9 @@
                       </v-col>
                       <v-col>
                         <h6 class="text-center font-weight-light">Users</h6>
-                        <h5 class="text-center text-white" id="patients">{{ users }}</h5>
+                        <h5 class="text-center text-white" id="patients">
+                          <animated-number :value="users" :formatValue="formatValue" :duration="300"/>
+                        </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
@@ -32,7 +34,9 @@
                       </v-col>
                       <v-col>
                         <h6 class="text-center font-weight-light">Patients</h6>
-                        <h5 class="text-center text-white" id="patients">{{ patients }}</h5>
+                        <h5 class="text-center text-white" id="patients">
+                          <animated-number :value="patients" :formatValue="formatValue" :duration="300"/>
+                        </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
@@ -47,7 +51,9 @@
                       </v-col>
                       <v-col>
                         <h6 class="text-center font-weight-light">Active Lab Orders</h6>
-                        <h5 class="text-center text-white" id="patients">{{ lab_orders }}</h5>
+                        <h5 class="text-center text-white" id="patients">
+                          <animated-number :value="lab_orders" :formatValue="formatValue" :duration="1000"/>
+                        </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
@@ -63,7 +69,9 @@
                       </v-col>
                       <v-col>
                         <h6 class="text-center font-weight-light">Lab Order Results</h6>
-                        <h5 class="text-center text-white" id="patients">{{ results }}</h5>
+                        <h5 class="text-center text-white" id="patients">
+                           <animated-number :value="results" :formatValue="formatValue" :duration="500"/>
+                        </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
@@ -79,7 +87,9 @@
                       </v-col>
                       <v-col>
                         <h6 class="text-center font-weight-light">Lab Order Results</h6>
-                        <h5 class="text-center text-white" id="patients">{{ results }}</h5>
+                        <h5 class="text-center text-white" id="patients">
+                           <animated-number :value="results" :formatValue="formatValue" :duration="800"/>
+                        </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
@@ -114,8 +124,12 @@
 </template>
 
 <script>
+import AnimatedNumber from "animated-number-vue";
 export default {
   name: 'Dashboard',
+  components: {
+    AnimatedNumber
+  },
   data() {
     return {
       patients: 0,
@@ -186,6 +200,9 @@ export default {
     },
   },
   methods: {
+    formatValue(value) {
+     return `${value.toFixed(0)}`;
+    },
     updateChart(array, index, data) {
       var arr = this.updateChartSeries(array, index, data);
       arr.push()
@@ -206,12 +223,12 @@ export default {
         this.series.push(data.patients)
         this.series.push(data.results)
       }else{
-      this.options.labels.shift()
-      this.options.labels.unshift("Active Lab orders");
-      this.clearChart(this.series); 
-      this.series.push(data.lab_orders_count)
-      this.series.push(data.patients)
-      this.series.push(data.results)
+        this.options.labels.shift()
+        this.options.labels.unshift("Active Lab orders");
+        this.clearChart(this.series); 
+        this.series.push(data.lab_orders_count)
+        this.series.push(data.patients)
+        this.series.push(data.results)
       }
     },
     clearChart(series) {

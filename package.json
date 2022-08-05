@@ -15,9 +15,11 @@
   "dependencies": {
     "@vue/composition-api": "^1.6.0",
     "actioncable-vue": "^2.5.1",
+    "animated-number-vue": "^1.0.0",
     "apexcharts": "^3.35.0",
     "axios": "^0.26.1",
     "core-js": "^3.6.5",
+    "gsap": "^3.10.4",
     "install": "^0.13.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
