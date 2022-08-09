@@ -1,7 +1,7 @@
 <template>
   <div name="NavBar">
     <nav>
-      <v-navigation-drawer color="#008F96" app  v-model="drawer" :mini-variant.sync="mini">
+      <v-navigation-drawer color="#008F96" app  v-model="drawer">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="text-h4">
@@ -9,13 +9,7 @@
                 <v-avatar width="100" height="55">
                   <v-img src="../assets/logo.png"></v-img>
                 </v-avatar>
-                <v-btn
-                   icon
-                   @click.stop="mini = !mini"
-                   class="d-none d-xl-flex d-none d-lg-flex d-xl-none"
-                >
-                  <v-icon>mdi-chevron-left</v-icon>
-                </v-btn>
+
               </div>
             </v-list-item-title>
           </v-list-item-content>
@@ -74,7 +68,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-app-bar app flat color="blue-grey lighten-5">
-        <v-app-bar-nav-icon class="grey--text d-xl-none d-lg-none d-xl-flex" v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="text-color">ART </span>|
           <span>{{time}}</span>
@@ -119,8 +113,7 @@ export default {
   },
   data() {
     return {
-      drawer: true,
-      mini: true,
+      drawer: null,
       user_name: null,
       avatar: null,
       user_role: null,
