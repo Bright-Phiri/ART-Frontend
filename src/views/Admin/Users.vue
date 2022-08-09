@@ -118,6 +118,7 @@
 
 <script>
   import axios from 'axios'
+  import config from '@/config'
   export default {
     name: 'Users',
     data(){
@@ -187,10 +188,10 @@
           userPayload.append("role", this.user.attributes.role);
           userPayload.append("password", this.user.attributes.password);
           userPayload.append("password_confirmation",this.user.attributes.password_confirmation);
-          let endpoint = `${sessionStorage.getItem("BASE_URL")}/users`;
+          let endpoint = `${config.BASE_URL}/users`;
           axios
             .post(endpoint,userPayload, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
             .then(response =>{
               if (response.data.status === "success"){
@@ -224,10 +225,10 @@
           userPayload.append("role", this.user.attributes.role);
           userPayload.append("password", this.user.attributes.password);
           userPayload.append("password_confirmation",this.user.attributes.password_confirmation);
-          let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${this.user_id}`;
+          let endpoint = `${config.BASE_URL}/users/${this.user_id}`;
           axios
             .put(endpoint,userPayload, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
             .then(response =>{
               if (response.data.status === "success"){
@@ -250,7 +251,7 @@
       },
       loadUsers(){
         this.loading = true
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/users`;
+        let endpoint = `${config.BASE_URL}/users`;
         axios
           .get(endpoint, {
               headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
@@ -264,10 +265,10 @@
            });
       },
       selectUserRecord(user_id){
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${user_id}`;
+        let endpoint = `${config.BASE_URL}/users/${user_id}`;
         axios
            .get(endpoint, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
            .then((response) =>{
              this.user = response.data.data.data
@@ -279,7 +280,7 @@
            })
       },
       deleteUser(user_id){
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${user_id}`;
+        let endpoint = `${config.BASE_URL}/users/${user_id}`;
         this.$swal({
           title: 'Delete User',
           text: "Are you sure you want to delete this user?",
@@ -293,7 +294,7 @@
         if (result.isConfirmed) {
          axios
           .delete(endpoint, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+            headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
          .then((response) =>{
            if (response.data.status === "success"){

@@ -181,6 +181,7 @@
 <script>
 import axios from 'axios'
 import jsPDF from 'jspdf'
+import config from '@/config'
 import 'jspdf-autotable'
 export default {
   name: 'Patients',
@@ -288,10 +289,10 @@ export default {
           phone: this.patient.phone,
           location: this.patient.location
         }
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients`;
+        let endpoint = `${config.BASE_URL}/patients`;
         axios
           .post(endpoint, patientPayload, {
-            headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+            headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
             if (response.data.status === "success") {
@@ -313,10 +314,10 @@ export default {
       }
     },
     selectPatientRecord(patient_id) {
-      let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${patient_id}`;
+      let endpoint = `${config.BASE_URL}/patients/${patient_id}`;
       axios
         .get(endpoint, {
-          headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+          headers: { Authorization: `Bearer ${this.$store.state.token}` }
         })
         .then((response) => {
           this.patient = response.data.data
@@ -345,10 +346,10 @@ export default {
           requested_by: this.lab_order.requested_by,
           taken_by: this.$store.state.user.username
         }
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${this.lab_order.patient_id}/lab_orders`;
+        let endpoint = `${config.BASE_URL}/patients/${this.lab_order.patient_id}/lab_orders`;
         axios
           .post(endpoint, lab_orderPayload, {
-            headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+            headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
             if (response.data.status === "success") {
@@ -383,10 +384,10 @@ export default {
           phone: this.patient.phone,
           location: this.patient.location
         }
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${this.patient_id}`;
+        let endpoint = `${config.BASE_URL}/patients/${this.patient_id}`;
         axios
           .put(endpoint, patientPayload, {
-            headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+            headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
             if (response.data.status === "success") {
@@ -408,7 +409,7 @@ export default {
       }
     },
     deletePatient(patient_id) {
-      let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${patient_id}`;
+      let endpoint = `${config.BASE_URL}/patients/${patient_id}`;
       this.$swal({
         title: 'Delete Patient',
         text: "Are you sure you want to delete this patient?",
@@ -422,7 +423,7 @@ export default {
           if (result.isConfirmed) {
             axios
               .delete(endpoint, {
-                headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+                headers: { Authorization: `Bearer ${this.$store.state.token}` }
               })
               .then((response) => {
                 if (response.data.status === "success") {
@@ -453,10 +454,10 @@ export default {
     },
     loadPatients() {
       this.loading = true
-      let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients`;
+      let endpoint = `${config.BASE_URL}/patients`;
       axios
         .get(endpoint, {
-          headers: { Authorization: `Bearer ${sessionStorage.getItem("Authorization")}` }
+          headers: { Authorization: `Bearer ${this.$store.state.token}` }
         })
         .then((response) => {
           this.patients = response.data.data

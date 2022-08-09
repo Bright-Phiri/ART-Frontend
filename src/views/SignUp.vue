@@ -62,6 +62,7 @@
 
 <script>
 import axios from 'axios'
+import config from '@/config'
 export default {
   name: 'Login',
   data() {
@@ -94,7 +95,7 @@ export default {
           userPayload.append("avatar", this.user.avatar);
           userPayload.append("password", this.user.password);
           userPayload.append("password_confirmation",this.user.password_confirmation);
-          let endpoint = `${sessionStorage.getItem("BASE_URL")}/createaccount`;
+          let endpoint = `${config.BASE_URL}/createaccount`;
           axios
             .post(endpoint, userPayload)
             .then(response => {
@@ -115,9 +116,6 @@ export default {
             })
       }
     }
-  },
-  mounted() {
-    sessionStorage.setItem("BASE_URL", "https://antiviraltreatementapi.herokuapp.com/api/v1");
   }
 }
 </script>

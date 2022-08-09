@@ -56,6 +56,8 @@
 
 <script>
 import axios from 'axios'
+import config from '@/config'
+
 export default {
   name: 'Login',
   data() {
@@ -77,16 +79,16 @@ export default {
           username: this.user.username,
           password: this.user.password
         }
-        let authEndpoint = `${sessionStorage.getItem("BASE_URL")}/login`;
+        let authEndpoint = `${config.BASE_URL}/login`;
         axios
           .post(authEndpoint, userPayload)
           .then(response => {
             if (response.data.status === "success") {
-              sessionStorage.setItem("Authorization", response.data.token);
+              this.$store.commit('setToken', response.data.token)
               let user = response.data.user
               user.avatar = response.data.avatar
               this.$store.commit('setUser', user)
-              sessionStorage.setItem("temp_pass", this.user.password);
+              this.$store.commit('setTempPass', this.user.password)
               this.overlay = false
               let loggedUser = this.$store.state.user
               let user_role = loggedUser.role
@@ -108,9 +110,6 @@ export default {
           })
       }
     }
-  },
-  mounted() {
-    sessionStorage.setItem("BASE_URL", "https://antiviraltreatementapi.herokuapp.com/api/v1");
   }
 }
 </script>

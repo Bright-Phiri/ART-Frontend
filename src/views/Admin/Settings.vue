@@ -103,6 +103,8 @@
 
 <script>
 import axios from 'axios';
+import config from '@/config'
+
 export default {
   name: "Settings",
   data() {
@@ -127,7 +129,7 @@ export default {
         this.$swal("Fields validation","Please fill in all required fields","warning");
       } else{
          this.overlay=true
-         let pass = sessionStorage.getItem("temp_pass")
+         let pass = this.$store.state.temp_pass
          const user = this.$store.state.user
          if (pass === this.user.password){
             var userPayload = new FormData();
@@ -136,12 +138,10 @@ export default {
             userPayload.append("phone", this.user.phone);
             userPayload.append("avatar", this.user.avatar);
             userPayload.append("password", this.user.password);
-            let endpoint = `${sessionStorage.getItem("BASE_URL")}/users/${user.id}`;
+            let endpoint = `${config.BASE_URL}/users/${user.id}`;
             axios
                .put(endpoint,userPayload, {
-                    headers: {
-                      Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`,
-                    },
+                    headers: { Authorization: `Bearer ${this.$store.state.token}` }
                })
                .then((response)=>{
                   if (response.data.status === "success"){
@@ -182,12 +182,10 @@ export default {
                 password_confirmation: this.user.confirmPassword
             }
             const user = this.$store.state.user
-            let endpoint = `${sessionStorage.getItem("BASE_URL")}/changepassword/${user.id}`;
+            let endpoint = `${config.BASE_URL}/changepassword/${user.id}`;
             axios
                .put(endpoint,userPayload, {
-                    headers: {
-                      Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`,
-                    },
+                    headers: { Authorization: `Bearer ${this.$store.state.token}` }
                })
                .then((response)=>{
                   if (response.data.status === "success"){
@@ -215,8 +213,6 @@ export default {
       this.user.username = user.username
       this.user.email = user.email
       this.user.phone = user.phone
-     
-      console.log("Avatar: "+this.user.avatar);
     }
   },
   mounted(){

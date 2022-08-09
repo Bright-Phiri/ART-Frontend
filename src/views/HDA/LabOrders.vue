@@ -41,6 +41,7 @@
 <script>
   import axios from 'axios'
   import jsPDF from 'jspdf'
+  import config from '@/config'
   import 'jspdf-autotable'
   export default {
     name: 'LabOrders',
@@ -113,10 +114,10 @@
       },
       loadLabOrders(resource){
         this.loading = true
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/${resource}`;
+        let endpoint = `${config.BASE_URL}/${resource}`;
         axios
           .get(endpoint, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
           .then((response) => {
             this.lab_orders = response.data.data

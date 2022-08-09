@@ -67,6 +67,7 @@
 
 <script>
   import axios from 'axios'
+  import config from '@/config'
   export default {
     name: 'LabOrders',
     data(){
@@ -149,10 +150,10 @@
         if (!this.search) {
           console.log("")
         } else {
-            let endpoint = `${sessionStorage.getItem("BASE_URL")}/verify_lab_order/${this.search}`;
+            let endpoint = `${config.BASE_URL}/verify_lab_order/${this.search}`;
           axios
           .get(endpoint, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
           .then((response) => {
             this.$swal("Message", response.data.message, "info").then(() => {
@@ -166,10 +167,10 @@
       },
       loadLabOrders(resource){
         this.loading = true
-        let endpoint = `${sessionStorage.getItem("BASE_URL")}/${resource}`;
+        let endpoint = `${config.BASE_URL}/${resource}`;
         axios
           .get(endpoint, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
           .then((response) => {
             this.lab_orders = response.data.data
@@ -189,7 +190,7 @@
           this.$swal("Fields validation", "Please fill in all required fields", "warning")
         }else{
           this.overlay = true
-          let endpoint = `${sessionStorage.getItem("BASE_URL")}/patients/${this.patient_id}/lab_orders/${this.lab_order_id}/results`;
+          let endpoint = `${config.BASE_URL}/patients/${this.patient_id}/lab_orders/${this.lab_order_id}/results`;
           let lab_orderPayload = {
             hiv_res: this.lab_order.hiv_res,
             tisuue_res: this.lab_order.tisuue_res,
@@ -197,7 +198,7 @@
           }
           axios
             .post(endpoint,lab_orderPayload, {
-              headers: {Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`}
+              headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
             .then(response =>{
               if (response.data.status === "success"){

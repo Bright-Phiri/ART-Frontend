@@ -9,7 +9,7 @@ const routes = [{
         path: '/',
         component: Navbar,
         beforeEnter(to, from, next) {
-            if (sessionStorage.getItem("Authorization") == null) {
+            if (!store.state.isUserLoggedIn) {
                 next({ path: "/login" })
             } else {
                 next();
@@ -20,7 +20,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Admin/Dashboard.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         next();
@@ -32,7 +32,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Admin/Users.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -51,7 +51,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Admin/Settings.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -70,7 +70,7 @@ const routes = [{
                 component: () =>
                     import ('../views/HDA/Patients.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -90,7 +90,7 @@ const routes = [{
                 component: () =>
                     import ('../views/HDA/LabOrders.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -109,7 +109,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Assistant/LabOrders.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -128,7 +128,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Assistant/LabOrderResults.vue'),
                 beforeEnter(to, from, next) {
-                    if (sessionStorage.getItem("Authorization") == null) {
+                    if (!store.state.isUserLoggedIn) {
                         next({ path: "/login" })
                     } else {
                         let loggedUser = store.state.user
@@ -158,8 +158,7 @@ const routes = [{
         path: '/logout',
         name: 'logout',
         beforeEnter(to, from, next) {
-            sessionStorage.removeItem("Authorization");
-            sessionStorage.removeItem("temp_pass")
+            store.replaceState({})
             next({ path: "/login" })
         }
 
