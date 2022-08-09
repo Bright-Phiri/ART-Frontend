@@ -152,7 +152,7 @@ export default {
       setInterval(function () {
         v.time = new Date().toLocaleTimeString();
         this.date = new Date().toLocaleString();
-    }, 1000);
+      }, 1000);
    }
   },
 
