@@ -33,13 +33,8 @@
           <div v-if="user_role === 'HDA Personnel'">
             <v-list-item dense v-for="item in hda" :key="item.title" link router :to="item.route">
                <v-list-item-icon>
-             <v-tooltip right>
-               <template v-slot:activator="{ on, attrs }">
-                 <v-icon  v-bind="attrs" v-on="on" color="#F3F1E6">{{ item.icon }}</v-icon>
-               </template>
-               <span>{{item.title}}</span>
-             </v-tooltip>  
-          </v-list-item-icon>
+                <v-icon  color="#F3F1E6">{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
               <v-list-item-content>
                 <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
