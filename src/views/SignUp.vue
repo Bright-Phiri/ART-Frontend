@@ -51,7 +51,7 @@
           <div class="d-flex justify-center mt-4">
             <span class="text-center font-weight-light">
               Already have an account?
-              <router-link to="/login">Sign in.</router-link>
+              <router-link to="/login" class="text-decoration-none">Sign in.</router-link>
             </span>
           </div>
         </v-col>

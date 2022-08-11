@@ -45,7 +45,7 @@
           <div class="d-flex justify-center mt-4">
             <span class="text-center font-weight-light">
               New to ART?
-              <router-link to="/signup">Sign up.</router-link>
+              <router-link class="text-decoration-none" to="/signup">Sign up.</router-link>
             </span>
           </div>
         </v-col>
