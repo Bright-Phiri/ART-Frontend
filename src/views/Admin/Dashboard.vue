@@ -5,7 +5,7 @@
         <v-card tile outlined>
           <v-card-text class>
             <v-container fluid>
-              <v-row >
+              <v-row>
                 <v-col v-if="user_role === 'Admin'" cols="12" lg="4" sm="6" md="4" class="py-0">
                   <v-alert border="left" colored-border color="#C0CA34" elevation="2">
                     <v-row>
@@ -17,7 +17,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Users</h6>
                         <h5 class="text-center text-white" id="patients">
-                          <animated-number :value="users" :formatValue="formatValue" :duration="300"/>
+                          <animated-number :value="users" :formatValue="formatValue" :duration="300" />
                         </h5>
                       </v-col>
                     </v-row>
@@ -35,7 +35,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Patients</h6>
                         <h5 class="text-center text-white" id="patients">
-                          <animated-number :value="patients" :formatValue="formatValue" :duration="2000"/>
+                          <animated-number :value="patients" :formatValue="formatValue" :duration="2000" />
                         </h5>
                       </v-col>
                     </v-row>
@@ -52,7 +52,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Active Lab Orders</h6>
                         <h5 class="text-center text-white" id="patients">
-                          <animated-number :value="lab_orders" :formatValue="formatValue" :duration="1000"/>
+                          <animated-number :value="lab_orders" :formatValue="formatValue" :duration="1000" />
                         </h5>
                       </v-col>
                     </v-row>
@@ -70,14 +70,14 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Lab Order Results</h6>
                         <h5 class="text-center text-white" id="patients">
-                           <animated-number :value="results" :formatValue="formatValue" :duration="500"/>
+                          <animated-number :value="results" :formatValue="formatValue" :duration="500" />
                         </h5>
                       </v-col>
                     </v-row>
                   </v-alert>
                 </v-col>
 
-                  <v-col v-if="user_role === 'Lab Assistant'" cols="12" lg="4" sm="6" md="4" class="py-0">
+                <v-col v-if="user_role === 'Lab Assistant'" cols="12" lg="4" sm="6" md="4" class="py-0">
                   <v-alert border="left" colored-border color="info" elevation="2">
                     <v-row>
                       <v-col>
@@ -88,7 +88,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Lab Order Results</h6>
                         <h5 class="text-center text-white" id="patients">
-                           <animated-number :value="results" :formatValue="formatValue" :duration="800"/>
+                          <animated-number :value="results" :formatValue="formatValue" :duration="800" />
                         </h5>
                       </v-col>
                     </v-row>
@@ -103,7 +103,7 @@
         <v-card tile outlined>
           <v-card-text>
             <div class="d-flex justify-center">
-              <apexchart width="600" type="area"  :options="option1" :series="stati"></apexchart>
+              <apexchart width="600" type="area" :options="option1" :series="stati"></apexchart>
             </div>
           </v-card-text>
         </v-card>
@@ -141,7 +141,7 @@ export default {
         xaxis: {
           categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-        colors:['#008F96'],
+        colors: ['#008F96'],
         stroke: {
           curve: 'smooth'
         },
@@ -154,7 +154,7 @@ export default {
         legend: {
           position: 'bottom'
         },
-        colors:['#008F96','#FDD830','#65B869'],
+        colors: ['#008F96', '#FDD830', '#65B869'],
         labels: ["Users", "Patients", "Lab Order Results"]
       },
       series: [],
@@ -162,8 +162,8 @@ export default {
   },
   channels: {
     DashboardChannel: {
-      connected() {},
-      rejected() {},
+      connected() { },
+      rejected() { },
       received(data) {
         switch (data.res) {
           case "all":
@@ -196,12 +196,12 @@ export default {
             break;
         }
       },
-      disconnected() {},
+      disconnected() { },
     },
   },
   methods: {
     formatValue(value) {
-     return `${value.toFixed(0)}`;
+      return `${value.toFixed(0)}`;
     },
     updateChart(array, index, data) {
       var arr = this.updateChartSeries(array, index, data);
@@ -218,14 +218,14 @@ export default {
       this.users = data.users;
       this.results = data.results
       if (this.user_role === "Admin") {
-        this.clearChart(this.series); 
+        this.clearChart(this.series);
         this.series.push(data.users)
         this.series.push(data.patients)
         this.series.push(data.results)
-      }else{
+      } else {
         this.options.labels.shift()
         this.options.labels.unshift("Active Lab orders");
-        this.clearChart(this.series); 
+        this.clearChart(this.series);
         this.series.push(data.lab_orders_count)
         this.series.push(data.patients)
         this.series.push(data.results)
@@ -234,7 +234,7 @@ export default {
     clearChart(series) {
       while (series.length) {
         series.pop();
-      } 
+      }
     },
     labOrdersStati(data) {
       let januaryCounter = 0;
@@ -251,63 +251,63 @@ export default {
       let decemberCounter = 0;
       let lab_orders = data.lab_orders
       for (let lab_order of lab_orders) {
-            let order_date = new Date(lab_order.created_at)
-            switch (order_date.getMonth()) {
-              case 0:
-                januaryCounter++;
-                break;
-              case 1:
-                februaryCounter++;
-                break;
-              case 2:
-                marchCounter++;
-                break;
-              case 3:
-                apilrCounter++;
-                break;
-              case 4:
-                mayCounter++;
-                break;
-              case 5:
-                juneCounter++;
-                break;
-              case 6:
-                julyCounter++;
-                break;
-              case 7:
-                augustCounter++;
-                break;
-              case 8:
-                septembeCounter++;
-                break;
-              case 9:
-                octCounter++;
-                break;
-              case 10:
-                novemberCounter++;
-                break;
-              case 11:
-                decemberCounter++;
-                break;
-            }
-          }
-          let newData = []
-          newData.push(januaryCounter)
-          newData.push(februaryCounter)
-          newData.push(marchCounter)
-          newData.push(apilrCounter)
-          newData.push(mayCounter)
-          newData.push(juneCounter)
-          newData.push(julyCounter)
-          newData.push(augustCounter)
-          newData.push(septembeCounter)
-          newData.push(octCounter)
-          newData.push(novemberCounter)
-          newData.push(decemberCounter)
-          this.stati = [{
-            data: newData
-          }]
+        let order_date = new Date(lab_order.created_at)
+        switch (order_date.getMonth()) {
+          case 0:
+            januaryCounter++;
+            break;
+          case 1:
+            februaryCounter++;
+            break;
+          case 2:
+            marchCounter++;
+            break;
+          case 3:
+            apilrCounter++;
+            break;
+          case 4:
+            mayCounter++;
+            break;
+          case 5:
+            juneCounter++;
+            break;
+          case 6:
+            julyCounter++;
+            break;
+          case 7:
+            augustCounter++;
+            break;
+          case 8:
+            septembeCounter++;
+            break;
+          case 9:
+            octCounter++;
+            break;
+          case 10:
+            novemberCounter++;
+            break;
+          case 11:
+            decemberCounter++;
+            break;
+        }
       }
+      let newData = []
+      newData.push(januaryCounter)
+      newData.push(februaryCounter)
+      newData.push(marchCounter)
+      newData.push(apilrCounter)
+      newData.push(mayCounter)
+      newData.push(juneCounter)
+      newData.push(julyCounter)
+      newData.push(augustCounter)
+      newData.push(septembeCounter)
+      newData.push(octCounter)
+      newData.push(novemberCounter)
+      newData.push(decemberCounter)
+      this.stati = [{
+        data: newData
+      }]
+    }
   },
   mounted() {
     this.$cable.subscribe({

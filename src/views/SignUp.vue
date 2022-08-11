@@ -17,30 +17,14 @@
                 <v-text-field label="Username" outlined dense v-model.trim="user.username"></v-text-field>
                 <v-text-field label="Email" outlined dense v-model.trim="user.email"></v-text-field>
                 <v-text-field label="Phone" outlined dense v-model.trim="user.phone"></v-text-field>
-                <v-file-input accept="image/*" outlined dense show-size label="Avatar" v-on:change="selectFile"></v-file-input>
-                <v-text-field
-                  label="Password"
-                  type="password"
-                  outlined
-                  dense
-                  v-model.trim="user.password"
-                ></v-text-field>
-                <v-text-field
-                  label="Confirm Password"
-                  type="password"
-                  outlined
-                  dense
-                  v-model.trim="user.password_confirmation"
-                ></v-text-field>
-                <v-btn
-                  type="submit"
-                  dark
-                  depressed
-                  class="text-capitalize"
-                  block
-                  rounded
-                  color="#008F96"
-                >Sign up</v-btn>
+                <v-file-input accept="image/*" outlined dense show-size label="Avatar" v-on:change="selectFile">
+                </v-file-input>
+                <v-text-field label="Password" type="password" outlined dense v-model.trim="user.password">
+                </v-text-field>
+                <v-text-field label="Confirm Password" type="password" outlined dense
+                  v-model.trim="user.password_confirmation"></v-text-field>
+                <v-btn type="submit" dark depressed class="text-capitalize" block rounded color="#008F96">Sign up
+                </v-btn>
                 <v-divider class="my-4"></v-divider>
               </v-form>
             </v-card-text>
@@ -79,41 +63,40 @@ export default {
     }
   },
   methods: {
-      selectFile(files) {
-        this.user.avatar = files;
-      },
+    selectFile(files) {
+      this.user.avatar = files;
+    },
     signUp() {
       if (!this.user.username || !this.user.email || !this.user.phone || !this.user.password || !this.user.password_confirmation) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
-          this.overlay = true
-   
-          var userPayload = new FormData();
-          userPayload.append("username", this.user.username);
-          userPayload.append("email", this.user.email);
-          userPayload.append("phone", this.user.phone);
-          userPayload.append("avatar", this.user.avatar);
-          userPayload.append("password", this.user.password);
-          userPayload.append("password_confirmation",this.user.password_confirmation);
-          let endpoint = `${config.BASE_URL}/createaccount`;
-          axios
-            .post(endpoint, userPayload)
-            .then(response => {
-              if (response.data.status === "success") {
-                this.overlay = false
-                this.$swal("Message", response.data.message, "success").then(() => {
-                  this.$router.push({ path: "/login" });
-                }
-                );
-              } else {
-                this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
-                this.overlay = false
-              }
-            })
-            .catch(error => {
-              this.$swal("Error", error + ", Couldn't reach API", "error")
+        this.overlay = true
+        var userPayload = new FormData();
+        userPayload.append("username", this.user.username);
+        userPayload.append("email", this.user.email);
+        userPayload.append("phone", this.user.phone);
+        userPayload.append("avatar", this.user.avatar);
+        userPayload.append("password", this.user.password);
+        userPayload.append("password_confirmation", this.user.password_confirmation);
+        let endpoint = `${config.BASE_URL}/createaccount`;
+        axios
+          .post(endpoint, userPayload)
+          .then(response => {
+            if (response.data.status === "success") {
               this.overlay = false
-            })
+              this.$swal("Message", response.data.message, "success").then(() => {
+                this.$router.push({ path: "/login" });
+              }
+              );
+            } else {
+              this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
+              this.overlay = false
+            }
+          })
+          .catch(error => {
+            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.overlay = false
+          })
       }
     }
   }

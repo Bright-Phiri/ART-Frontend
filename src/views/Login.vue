@@ -15,22 +15,10 @@
             <v-card-text>
               <v-form v-on:submit.prevent="signIn">
                 <v-text-field label="Username" outlined dense v-model.trim="user.username"></v-text-field>
-                <v-text-field
-                  label="Password"
-                  type="password"
-                  outlined
-                  dense
-                  v-model.trim="user.password"
-                ></v-text-field>
-                <v-btn
-                  type="submit"
-                  dark
-                  depressed
-                  class="text-capitalize font-weight-light"
-                  block
-                  rounded
-                  color="#008F96"
-                >Sign in</v-btn>
+                <v-text-field label="Password" type="password" outlined dense v-model.trim="user.password">
+                </v-text-field>
+                <v-btn type="submit" dark depressed class="text-capitalize font-weight-light" block rounded
+                  color="#008F96">Sign in</v-btn>
                 <div class="d-flex">
                   <v-divider class="my-4 mr-2"></v-divider>
                   <span class="mt-1">or</span>
