@@ -158,10 +158,11 @@ const routes = [{
         path: '/logout',
         name: 'logout',
         beforeEnter(to, from, next) {
-            store.replaceState({})
+            store.dispatch('setToken', null)
+            store.dispatch('setUser', null)
+            store.dispatch('setTempPass', null)
             next({ path: "/login" })
         }
-
     }
 ]
 

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        user: {},
+        user: null,
         token: null,
         temp_pass: null,
         isUserLoggedIn: false
@@ -25,6 +25,17 @@ export default new Vuex.Store({
         },
         setTempPass(state, temp_pass){
             state.temp_pass = temp_pass
+        }
+    },
+    actions: {
+        setToken({commit}, token) {
+            commit('setToken', token)
+        },
+        setUser({commit}, user) {
+            commit('setUser', user)
+        },
+        setTempPass({commit}, temp_pass){
+           commit('setTempPass', temp_pass)
         }
     },
     plugins: [createPersistedState()]
