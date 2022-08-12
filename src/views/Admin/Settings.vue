@@ -52,7 +52,7 @@
                           </v-col>
                         </v-row>
                         <v-btn class="secondary text-capitalize">Cancel</v-btn>
-                        <v-btn type="submit" color="#008F96" class="primary text-capitalize">Save</v-btn>
+                        <v-btn type="submit" color="#008F96" class="primary text-capitalize ml-2">Save</v-btn>
                       </v-form>
                     </v-card-text>
                     <v-overlay absolute opacity="0" :value="overlay">
@@ -86,7 +86,7 @@
                           </v-col>
                         </v-row>
                         <v-btn class="secondary text-capitalize">Cancel</v-btn>
-                        <v-btn type="submit" color="#008F96" class="primary text-capitalize">Save</v-btn>
+                        <v-btn type="submit" color="#008F96" class="primary text-capitalize ml-2">Save</v-btn>
                       </v-form>
                     </v-card-text>
                     <v-overlay absolute opacity="0" :value="overlay">
@@ -176,7 +176,7 @@ export default {
       if (!this.user.oldPassword || !this.user.newPassword || !this.user.confirmPassword) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning");
       } else {
-        let pass = sessionStorage.getItem("temp_pass")
+        let pass = this.$store.state.temp_pass
         if (pass === this.user.oldPassword) {
           this.overlay = true
           let userPayload = {

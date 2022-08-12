@@ -301,9 +301,7 @@ export default {
       let endpoint = `${config.BASE_URL}/users`;
       axios
         .get(endpoint, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("Authorization")}`,
-          },
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
           this.users = response.data.data.data;

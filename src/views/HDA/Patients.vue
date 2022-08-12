@@ -255,7 +255,7 @@ export default {
           value: 'village',
         },
         {
-          text: 'Contact',
+          text: 'Phone number',
           value: 'phone',
         }, {
           text: 'Location',
@@ -486,7 +486,7 @@ export default {
           { title: "Date of Birth", dataKey: "dob" },
           { title: "District", dataKey: "district" },
           { title: "Village", dataKey: "village" },
-          { title: "Phone", dataKey: "phone" },
+          { title: "Phone Number", dataKey: "phone" },
           { title: "Location", dataKey: "location" },
         ];
         const doc = new jsPDF({

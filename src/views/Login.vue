@@ -78,15 +78,7 @@ export default {
               this.$store.commit('setUser', user)
               this.$store.commit('setTempPass', this.user.password)
               this.overlay = false
-              let loggedUser = this.$store.state.user
-              let user_role = loggedUser.role
-              if (user_role === "Admin") {
-                this.$router.push({ path: '/' })
-              } else if (user_role === "HDA Personnel") {
-                this.$router.push({ path: '/patients' })
-              } else if (user_role === "Lab Assistant") {
-                this.$router.push({ path: '/assistant' })
-              }
+              this.switchUserPanel(user.role)
             } else {
               this.$swal(response.data.status, response.data.message, response.data.status)
               this.overlay = false
@@ -97,6 +89,19 @@ export default {
             this.overlay = false
           })
       }
+    },
+    switchUserPanel(userRole){
+       switch (userRole) {
+          case "Admin":
+            this.$router.push({ path: '/' })
+            break;
+          case "HDA Personnel":
+            this.$router.push({ path: '/patients' })
+            break;
+          case "Lab Assistant":
+            this.$router.push({ path: '/assistant' })
+            break;
+        }
     }
   }
 }
