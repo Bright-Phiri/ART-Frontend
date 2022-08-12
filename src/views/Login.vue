@@ -72,12 +72,11 @@ export default {
           .post(authEndpoint, userPayload)
           .then(response => {
             if (response.data.status === "success") {
-              this.$store.commit('setToken', response.data.token)
+              this.overlay = false
               let user = response.data.user
-              user.avatar = response.data.avatar
+              this.$store.commit('setToken', response.data.token)
               this.$store.commit('setUser', user)
               this.$store.commit('setTempPass', this.user.password)
-              this.overlay = false
               this.switchUserPanel(user.role)
             } else {
               this.$swal(response.data.status, response.data.message, response.data.status)

@@ -46,8 +46,8 @@
                 <span>{{ item.created_at.substr(0, 10) }}</span>
               </template>
               <template v-slot:[`item.verified`]="{ item }">
-                <v-chip small style="width: 50px" :color="getColor(item.verified)" dark>
-                  {{ item.verified }}
+                 <v-chip class="text-center" small style="width: 65px" :color="getColor(item.verified)" dark>
+                  {{item.verified ?"verified":"pending"}}
                 </v-chip>
               </template>
             </v-data-table>
@@ -114,7 +114,7 @@ export default {
           value: "created_at",
         },
         {
-          text: "Verified",
+          text: "Status",
           value: "verified",
         },
         {
@@ -138,8 +138,8 @@ export default {
       }
     },
     getColor(verified) {
-      if (verified) return "green";
-      else return "red";
+      if (verified) return "success";
+      else return "warning";
     },
     verify() {
       if (!this.search) {
