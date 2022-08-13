@@ -291,21 +291,21 @@ export default {
             break;
         }
       }
-      let newData = []
-      newData.push(januaryCounter)
-      newData.push(februaryCounter)
-      newData.push(marchCounter)
-      newData.push(apilrCounter)
-      newData.push(mayCounter)
-      newData.push(juneCounter)
-      newData.push(julyCounter)
-      newData.push(augustCounter)
-      newData.push(septembeCounter)
-      newData.push(octCounter)
-      newData.push(novemberCounter)
-      newData.push(decemberCounter)
+      let labOrdersStatistics = []
+      labOrdersStatistics.push(januaryCounter)
+      labOrdersStatistics.push(februaryCounter)
+      labOrdersStatistics.push(marchCounter)
+      labOrdersStatistics.push(apilrCounter)
+      labOrdersStatistics.push(mayCounter)
+      labOrdersStatistics.push(juneCounter)
+      labOrdersStatistics.push(julyCounter)
+      labOrdersStatistics.push(augustCounter)
+      labOrdersStatistics.push(septembeCounter)
+      labOrdersStatistics.push(octCounter)
+      labOrdersStatistics.push(novemberCounter)
+      labOrdersStatistics.push(decemberCounter)
       this.stati = [{
-        data: newData
+        data: labOrdersStatistics
       }]
     }
   },
