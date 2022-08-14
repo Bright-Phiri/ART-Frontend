@@ -87,7 +87,6 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
-import { mapState } from 'vuex'
 export default {
   name: 'NavBar',
   components: {
@@ -123,7 +122,11 @@ export default {
       right: null,
     }
   },
-  computed: mapState(['user']),
+  computed: {
+   user(){
+     return this.$store.state.user
+   }
+  },
   methods: {
     printTime() {
       var v = this;
