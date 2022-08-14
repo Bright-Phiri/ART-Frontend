@@ -100,16 +100,16 @@
         </v-card>
       </v-col>
       <v-col cols="12" lg="8">
-        <v-card tile outlined>
+        <v-card>
           <v-card-text>
-            <div class="d-flex justify-center">
-              <apexchart width="600" type="area" :options="option1" :series="stati"></apexchart>
+            <div class="justify-center">
+              <apexchart width="100%" height="224%" type="area" :options="option1" :series="stati"></apexchart>
             </div>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col cols="12" lg="4">
-        <v-card tile outlined>
+        <v-card>
           <v-card-title class="d-flex font-weight-light">Statistics</v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
