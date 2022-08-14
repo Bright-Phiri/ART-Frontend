@@ -35,7 +35,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Patients</h6>
                         <h5 class="text-center text-white" id="patients">
-                          <animated-number :value="patients" :formatValue="formatValue" :duration="2000" />
+                          <animated-number :value="patients" :formatValue="formatValue" :duration="1500" />
                         </h5>
                       </v-col>
                     </v-row>

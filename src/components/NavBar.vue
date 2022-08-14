@@ -118,20 +118,20 @@ export default {
         { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Users', icon: 'mdi-account-multiple', route: "/users" },
         { title: 'Settings', icon: 'mdi-cogs', route: "/settings" },
-        { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
+        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
       ],
       hda: [
         { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Patients', icon: 'mdi-account-multiple', route: "/patients" },
         { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/laborders" },
         { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
-        { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
+        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
       ],
       assistant: [
         { title: 'Dashboard', icon: 'mdi-home', route: "/" },
         { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/assistant" },
         { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
-        { title: 'Logout', icon: 'mdi-logout', route: "/logout" }
+        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
       ],
       right: null,
     }
