@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+
 import Vue from 'vue'
 import createPersistedState from "vuex-persistedstate";
 
@@ -15,16 +16,16 @@ export default new Vuex.Store({
         setUser(state, payload) {
             state.user = payload
         },
-        setToken(state, token){
-            state.token = token
-            if(token){
+        setToken(state, payload){
+            state.token = payload
+            if(payload){
                 state.isUserLoggedIn = true
             } else {
                 state.isUserLoggedIn = false
             }
         },
-        setTempPass(state, temp_pass){
-            state.temp_pass = temp_pass
+        setTempPass(state, payload){
+            state.temp_pass = payload
         }
     },
     plugins: [createPersistedState()]

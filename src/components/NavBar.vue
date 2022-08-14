@@ -1,7 +1,7 @@
 <template>
   <div name="NavBar">
     <nav>
-      <v-navigation-drawer color="#008F96" app  v-model="drawer">
+      <v-navigation-drawer color="#008F96" app v-model="drawer">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="text-h4">
@@ -32,9 +32,9 @@
 
           <div v-if="user_role === 'HDA Personnel'">
             <v-list-item dense v-for="item in hda" :key="item.title" link router :to="item.route">
-               <v-list-item-icon>
-                <v-icon  color="#F3F1E6">{{ item.icon }}</v-icon>
-            </v-list-item-icon>
+              <v-list-item-icon>
+                <v-icon color="#F3F1E6">{{ item.icon }}</v-icon>
+              </v-list-item-icon>
 
               <v-list-item-content>
                 <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
@@ -43,14 +43,7 @@
           </div>
 
           <div v-if="user_role === 'Lab Assistant'">
-            <v-list-item
-              dense
-              v-for="item in assistant"
-              :key="item.title"
-              link
-              router
-              :to="item.route"
-            >
+            <v-list-item dense v-for="item in assistant" :key="item.title" link router :to="item.route">
               <v-list-item-icon>
                 <v-icon color="#F3F1E6">{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -66,18 +59,11 @@
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <span class="text-color">ART </span>|
-          <span>{{time}}</span>
+          <span>{{ time }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <div class="d-flex">
-           <v-badge
-            bordered
-            bottom
-            color="green accent-4"
-            dot
-            offset-x="10"
-            offset-y="10"
-          >
+          <v-badge bordered bottom color="green accent-4" dot offset-x="10" offset-y="10">
             <v-avatar size="30">
               <v-img :src="user.avatar">
                 <template v-slot:placeholder>
@@ -88,19 +74,20 @@
               </v-img>
             </v-avatar>
           </v-badge>
-          <span class="ml-2">{{user.username}}</span>
+          <span class="ml-2">{{ user.username }}</span>
         </div>
       </v-app-bar>
     </nav>
     <transition name="page" mode="out-in">
-      <router-view/>
-    </transition>  
+      <router-view />
+    </transition>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Footer from "@/components/Footer.vue";
+import { mapState } from 'vuex'
 export default {
   name: 'NavBar',
   components: {
@@ -136,11 +123,7 @@ export default {
       right: null,
     }
   },
- computed: {
-    user () {
-      return this.$store.state.user
-    }
-  },
+  computed: mapState(['user']),
   methods: {
     printTime() {
       var v = this;
@@ -148,9 +131,8 @@ export default {
         v.time = new Date().toLocaleTimeString();
         this.date = new Date().toLocaleString();
       }, 1000);
-   }
+    }
   },
-
   mounted() {
     let loggedUser = this.$store.state.user
     this.avatar = loggedUser.avatar
@@ -161,14 +143,18 @@ export default {
 </script>
 
 <style>
-.page-enter-active, .page-leave-active {
+.page-enter-active,
+.page-leave-active {
   transition: opacity 1s, transform 1s;
 }
-.page-enter, .page-leave-to {
+
+.page-enter,
+.page-leave-to {
   opacity: 0;
   transform: translateX(-2%);
 }
-.text-color{
+
+.text-color {
   color: #F25039;
 }
 </style>
