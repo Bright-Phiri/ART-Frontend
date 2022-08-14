@@ -158,9 +158,9 @@ const routes = [{
         path: '/logout',
         name: 'logout',
         beforeEnter(to, from, next) {
-            store.dispatch('setToken', null)
-            store.dispatch('setUser', null)
-            store.dispatch('setTempPass', null)
+            store.commit('setToken', null)
+            store.commit('setUser', null)
+            store.commit('setTempPass', null)
             next({ path: "/login" })
         }
     }

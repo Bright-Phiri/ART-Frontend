@@ -27,16 +27,5 @@ export default new Vuex.Store({
             state.temp_pass = temp_pass
         }
     },
-    actions: {
-        setToken({commit}, token) {
-            commit('setToken', token)
-        },
-        setUser({commit}, user) {
-            commit('setUser', user)
-        },
-        setTempPass({commit}, temp_pass){
-           commit('setTempPass', temp_pass)
-        }
-    },
     plugins: [createPersistedState()]
 })
