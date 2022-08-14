@@ -35,7 +35,7 @@
                       <v-col>
                         <h6 class="text-center font-weight-light">Patients</h6>
                         <h5 class="text-center text-white" id="patients">
-                          <animated-number :value="patients" :formatValue="formatValue" :duration="1500" />
+                          <animated-number :value="patients" :formatValue="formatValue" :duration="1800" />
                         </h5>
                       </v-col>
                     </v-row>
@@ -114,7 +114,7 @@
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
             <div class="d-flex justify-center">
-              <apexchart width="380" type="donut" :options="options" :series="series"></apexchart>
+              <apexchart v-if="series && series.length" width="380" type="donut" :options="options" :series="series"></apexchart>
             </div>
           </v-card-text>
         </v-card>
