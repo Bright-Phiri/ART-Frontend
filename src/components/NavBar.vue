@@ -67,7 +67,7 @@
             <v-avatar size="30">
               <v-img :src="user.avatar">
                 <template v-slot:placeholder>
-                  <v-sheet>
+                   <v-sheet color="#BFBFBF">
                     <v-skeleton-loader type="image"> </v-skeleton-loader>
                   </v-sheet>
                 </template>
