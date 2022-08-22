@@ -10,9 +10,11 @@ import VueApexCharts from 'vue-apexcharts'
 import VueQRCodeComponent from 'vue-qrcode-component'
 import ActionCableVue from "actioncable-vue";
 import store from './store'
+import VueToastify from "vue-toastify";
 
 Vue.config.productionTip = false
 Vue.use(VueSweetalert2, VueAxios, axios)
+Vue.use(VueToastify, {theme: "light"});
 Vue.use(VueApexCharts)
 Vue.use(ActionCableVue, {
     debug: true,

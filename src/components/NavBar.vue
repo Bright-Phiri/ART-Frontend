@@ -9,7 +9,6 @@
                 <v-avatar width="100" height="55">
                   <v-img src="../assets/logo.png"></v-img>
                 </v-avatar>
-
               </div>
             </v-list-item-title>
           </v-list-item-content>
@@ -25,7 +24,9 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="white--text">{{
+                    item.title
+                }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -37,7 +38,9 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="white--text">{{
+                    item.title
+                }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -49,7 +52,9 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
+                <v-list-item-title class="white--text">{{
+                    item.title
+                }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -62,12 +67,15 @@
           <span>{{ time }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <notification-bell class="mr-4" :size="21" :count="unVerifiedLabOrders" :upperLimit="50" counterLocation="upperRight"
+          counterStyle="roundRectangle" counterBackgroundColor="#FF0000" counterTextColor="#FFFFFF" iconColor="#000000"
+          :animated="true" :prefixPlus="true" />
         <div class="d-flex">
           <v-badge bordered bottom color="green accent-4" dot offset-x="10" offset-y="10">
             <v-avatar size="30">
               <v-img :src="user.avatar">
                 <template v-slot:placeholder>
-                   <v-sheet color="#BFBFBF">
+                  <v-sheet color="#BFBFBF">
                     <v-skeleton-loader type="image"> </v-skeleton-loader>
                   </v-sheet>
                 </template>
@@ -87,10 +95,12 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
+import NotificationBell from "vue-notification-bell";
 export default {
-  name: 'NavBar',
+  name: "NavBar",
   components: {
     Footer,
+    NotificationBell,
   },
   data() {
     return {
@@ -101,31 +111,40 @@ export default {
       time: null,
       date: null,
       admin: [
-        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
-        { title: 'Users', icon: 'mdi-account-multiple', route: "/users" },
-        { title: 'Settings', icon: 'mdi-cogs', route: "/settings" },
-        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
+        { title: "Dashboard", icon: "mdi-home", route: "/" },
+        { title: "Users", icon: "mdi-account-multiple", route: "/users" },
+        { title: "Settings", icon: "mdi-cogs", route: "/settings" },
+        { title: "Logout", icon: "mdi-logout-variant", route: "/logout" },
       ],
       hda: [
-        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
-        { title: 'Patients', icon: 'mdi-account-multiple', route: "/patients" },
-        { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/laborders" },
-        { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
-        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
+        { title: "Dashboard", icon: "mdi-home", route: "/" },
+        { title: "Patients", icon: "mdi-account-multiple", route: "/patients" },
+        { title: "Lab Orders", icon: "mdi-hospital-box", route: "/laborders" },
+        {
+          title: "Results",
+          icon: "mdi-checkbox-blank-badge",
+          route: "/results",
+        },
+        { title: "Logout", icon: "mdi-logout-variant", route: "/logout" },
       ],
       assistant: [
-        { title: 'Dashboard', icon: 'mdi-home', route: "/" },
-        { title: 'Lab Orders', icon: 'mdi-hospital-box', route: "/assistant" },
-        { title: 'Results', icon: 'mdi-checkbox-blank-badge', route: "/results" },
-        { title: 'Logout', icon: 'mdi-logout-variant', route: "/logout" }
+        { title: "Dashboard", icon: "mdi-home", route: "/" },
+        { title: "Lab Orders", icon: "mdi-hospital-box", route: "/assistant" },
+        {
+          title: "Results",
+          icon: "mdi-checkbox-blank-badge",
+          route: "/results",
+        },
+        { title: "Logout", icon: "mdi-logout-variant", route: "/logout" },
       ],
       right: null,
-    }
+      unVerifiedLabOrders: 0,
+    };
   },
   computed: {
-   user(){
-     return this.$store.state.user
-   }
+    user() {
+      return this.$store.state.user;
+    },
   },
   methods: {
     printTime() {
@@ -134,15 +153,15 @@ export default {
         v.time = new Date().toLocaleTimeString();
         this.date = new Date().toLocaleString();
       }, 1000);
-    }
+    },
   },
   mounted() {
-    let loggedUser = this.$store.state.user
-    this.avatar = loggedUser.avatar
-    this.user_role = loggedUser.role
+    let loggedUser = this.$store.state.user;
+    this.avatar = loggedUser.avatar;
+    this.user_role = loggedUser.role;
     this.printTime();
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -158,6 +177,6 @@ export default {
 }
 
 .text-color {
-  color: #F25039;
+  color: #f25039;
 }
 </style>

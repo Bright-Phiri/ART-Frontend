@@ -79,6 +79,7 @@ export default {
               this.$store.commit('setUser', user)
               this.$store.commit('setTempPass', this.user.password)
               this.switchUserPanel(user.role)
+              this.$vToastify.success(`Welcome ${user.username}`, 'Message');
             } else {
               this.$swal(response.data.status, response.data.message, response.data.status)
               this.overlay = false
