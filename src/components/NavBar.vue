@@ -67,7 +67,7 @@
           <span>{{ time }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <notification-bell class="mr-4" :size="21" :count="unVerifiedLabOrders" :upperLimit="50" counterLocation="upperRight"
+        <notification-bell v-if="user_role != 'Admin'" class="mr-4" :size="21" :count="unVerifiedLabOrders" :upperLimit="50" counterLocation="upperRight"
           counterStyle="roundRectangle" counterBackgroundColor="#FF0000" counterTextColor="#FFFFFF" iconColor="#000000"
           :animated="true" :prefixPlus="true" />
         <div class="d-flex">
