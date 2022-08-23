@@ -26,10 +26,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Screenshots
 
-<img width="960" alt="Screenshot 2022-08-14 165344" src="https://user-images.githubusercontent.com/75673222/184542625-df0126b9-fd50-47d4-b8a9-f4dbbd32a23a.png">
-<img width="953" alt="Screenshot 2022-08-12 142014" src="https://user-images.githubusercontent.com/75673222/184353089-79c533e0-9e7f-4844-8710-a9c659d7abb2.png">
-<img width="960" alt="Screenshot 2022-08-12 142030" src="https://user-images.githubusercontent.com/75673222/184353123-1bdac2c1-a7d2-49b9-8cbd-4b5883ca8137.png">
-<img width="960" alt="Screenshot 2022-08-12 142048" src="https://user-images.githubusercontent.com/75673222/184353147-18ba06a1-72a3-4c65-8842-33bba8ec076f.png">
-<img width="960" alt="Screenshot 2022-08-12 142105" src="https://user-images.githubusercontent.com/75673222/184353183-36699f6e-2063-4819-b826-020d35534893.png">
-<img width="960" alt="Screenshot 2022-08-12 142135" src="https://user-images.githubusercontent.com/75673222/184353207-86c0c402-4826-4a00-9fed-72c3d9318d1f.png">
-<img width="960" alt="Screenshot 2022-08-12 142207" src="https://user-images.githubusercontent.com/75673222/184353226-f04d4e8a-3e05-4ee3-adc5-8148a85dd6a0.png">
+<img width="960" alt="Screenshot 2022-08-23 133957" src="https://user-images.githubusercontent.com/75673222/186187876-75364d30-fe46-42aa-96ef-954cfdd50b2f.png">
+<img width="960" alt="Screenshot 2022-08-23 163857" src="https://user-images.githubusercontent.com/75673222/186187952-6256da7b-45fb-4e98-bcfc-4a06bb1026f0.png">
+<img width="960" alt="Screenshot 2022-08-23 163925" src="https://user-images.githubusercontent.com/75673222/186188030-f60ff313-fa84-4c8f-a1cb-6d6a06bc1d2f.png">
+<img width="960" alt="Screenshot 2022-08-23 163942" src="https://user-images.githubusercontent.com/75673222/186188086-124fcf8d-c20b-4095-bf49-b735b5e62a2a.png">
+<img width="960" alt="Screenshot 2022-08-23 164126" src="https://user-images.githubusercontent.com/75673222/186188145-e2f79a71-c6da-468d-ab61-3210dc40f881.png">
+<img width="959" alt="Screenshot 2022-08-23 164105" src="https://user-images.githubusercontent.com/75673222/186188156-3cd08872-2b87-4522-8651-d2bd73aeae37.png">
+<img width="960" alt="Screenshot 2022-08-23 164013" src="https://user-images.githubusercontent.com/75673222/186188161-c571754f-d9de-44e2-8724-f67431779d47.png">
+
