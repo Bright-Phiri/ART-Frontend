@@ -146,6 +146,17 @@ export default {
       return this.$store.state.user;
     },
   },
+  channels: {
+    NotificationsChannel: {
+      connected() { },
+      rejected() { },
+      received(data) {
+        this.unVerifiedLabOrders = data.unverified_lab_orders_count
+        console.log(this.unVerifiedLabOrders);
+      },
+      disconnected() { },
+    },
+  },
   methods: {
     printTime() {
       var v = this;
@@ -156,6 +167,9 @@ export default {
     },
   },
   mounted() {
+    this.$cable.subscribe({
+      channel: "NotificationsChannel",
+    });
     let loggedUser = this.$store.state.user;
     this.avatar = loggedUser.avatar;
     this.user_role = loggedUser.role;

@@ -50,7 +50,7 @@
                         </v-avatar>
                       </v-col>
                       <v-col>
-                        <h6 class="text-center font-weight-light">Active Lab Orders</h6>
+                        <h6 class="text-center font-weight-light">Lab Orders</h6>
                         <h5 class="text-center text-white" id="patients">
                           <animated-number :value="lab_orders" :formatValue="formatValue" :duration="1000" />
                         </h5>
@@ -224,7 +224,7 @@ export default {
         this.series.push(data.results)
       } else {
         this.options.labels.shift()
-        this.options.labels.unshift("Active Lab orders");
+        this.options.labels.unshift("Lab orders");
         this.clearChart(this.series);
         this.series.push(data.lab_orders_count)
         this.series.push(data.patients)
