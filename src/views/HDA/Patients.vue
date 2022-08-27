@@ -72,7 +72,7 @@
             <v-card-text>
               <v-form ref="consultationForm" v-on:submit.prevent="addLabOrder">
                 <v-text-field label="QR Code" readonly v-model="lab_order.qrcode"></v-text-field>
-                <v-autocomplete label="Blood type" :items="blood_type" v-model="lab_order.blood_type"></v-autocomplete>
+                <v-autocomplete label="Blood type" :items="blood_groups" v-model="lab_order.blood_type"></v-autocomplete>
                 <v-text-field label="Sample Type" v-model="lab_order.tissue_name"></v-text-field>
                 <v-text-field label="Requested By" v-model="lab_order.requested_by"></v-text-field>
                 <div class="d-flex justify-end">
@@ -209,7 +209,7 @@ export default {
         requested_by: null,
         taken_by: null
       },
-      blood_type: ['Group A', 'Group B', 'Group AB', 'Group O'],
+      blood_groups: [],
       labOrderDialog: false,
       patient_id: null,
       editPatientDialog: false,
@@ -503,10 +503,27 @@ export default {
         // Creating footer and saving file
         doc.save(`${this.heading}.pdf`);
       }
+    },
+    loadBloodGroups(){
+      let endpoint = `${config.BASE_URL}/blood_groups`;
+      axios
+        .get(endpoint, {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` }
+        })
+        .then((response) => {
+          var blood_groups = response.data.data;
+          blood_groups.forEach(group => {
+             this.blood_groups.push(group.name);
+          });
+        })
+        .catch((error) => {
+          this.$swal("Error", error + ", Couldn't reach API", "error");
+        });
     }
   },
   mounted() {
     this.loadPatients()
+    this.loadBloodGroups();
   }
 }
 </script>
