@@ -2,14 +2,14 @@
   <div class="BloodGroups">
     <v-row>
       <v-col cols="12">
-        <v-dialog v-model="addBloodGroupDialog" transition="scale-transition" max-width="600px">
+        <v-dialog v-model="addBloodGroupDialog" transition="scale-transition" max-width="500px">
           <v-card>
             <v-card-title> Add Blood Group </v-card-title>
             <v-card-text>
               <v-form ref="bloodGroupForm" v-on:submit.prevent="saveBloodGroup">
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6">
+                    <v-col cols="12">
                       <v-text-field label="Blood group name" v-model.trim="bloodGroup.name" dense></v-text-field>
                     </v-col>
                   </v-row>
@@ -25,14 +25,14 @@
             </v-overlay>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="editUserDialog" transition="scale-transition" max-width="600px">
+        <v-dialog v-model="editBloodGroupDialog" transition="scale-transition" max-width="500px">
           <v-card>
             <v-card-title> Edit Blood Group </v-card-title>
             <v-card-text>
-              <v-form ref="bloodGroupUpdateForm" v-on:submit.prevent="updateUser">
+              <v-form ref="bloodGroupUpdateForm" v-on:submit.prevent="updateBloodGroup">
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6">
+                    <v-col cols="12">
                       <v-text-field label="Blood group name" v-model.trim="bloodGroup.name" dense></v-text-field>
                     </v-col>
                   </v-row>
@@ -90,6 +90,7 @@ export default {
       bloodGroup: {
         name: null
       },
+      blood_group_id: null,
       addBloodGroupDialog: false,
       editBloodGroupDialog: false,
       headers: [
@@ -111,7 +112,6 @@ export default {
     };
   },
   methods: {
-  
     saveBloodGroup() {
       if (
         !this.bloodGroup.name
@@ -180,9 +180,9 @@ export default {
               this.overlay = false;
               this.$swal("Message", response.data.message, "success").then(
                 () => {
-                  this.editUserDialog = false;
+                  this.editBloodGroupDialog = false;
                   this.$refs.bloodGroupUpdateForm.reset();
-                  this.loadUsers();
+                  this.loadBloodGroups();
                 }
               );
             } else {
@@ -208,7 +208,7 @@ export default {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
-          this.users = response.data.data.data;
+          this.bloodGroups = response.data.data;
           this.loading = false;
         })
         .catch((error) => {
@@ -222,7 +222,7 @@ export default {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
-          this.bloodGroup = response.data.data.data;
+          this.bloodGroup = response.data.data;
           this.blood_group_id = id;
           this.editBloodGroupDialog = true;
         })
@@ -233,7 +233,7 @@ export default {
     deleteBloodGroup(id) {
       let endpoint = `${config.BASE_URL}/blood_groups/${id}`;
       this.$swal({
-        title: "Delete User",
+        title: "Delete Blood Group",
         text: "Are you sure you want to delete this blood group?",
         icon: "warning",
         showCancelButton: true,
@@ -250,7 +250,7 @@ export default {
               if (response.data.status === "success") {
                 this.$swal("Message", response.data.message, "success").then(
                   () => {
-                    this.loadUsers();
+                    this.loadBloodGroups();
                   }
                 );
               }
