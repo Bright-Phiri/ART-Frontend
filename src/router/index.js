@@ -44,6 +44,24 @@ const routes = [{
                         }
                     }
                 }
+            }, {
+                path: '/blood_groups',
+                name: 'blood_groups',
+                component: () =>
+                    import ('../views/Admin/BloodGroups.vue'),
+                beforeEnter(to, from, next) {
+                    if (!store.state.isUserLoggedIn) {
+                        next({ path: "/login" })
+                    } else {
+                        let loggedUser = store.state.user
+                        let user_role = loggedUser.role
+                        if (user_role != "Admin") {
+                            next({ path: "/login" })
+                        } else {
+                            next();
+                        }
+                    }
+                }
             },
             {
                 path: '/settings',
