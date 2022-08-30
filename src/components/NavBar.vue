@@ -113,6 +113,7 @@ export default {
       admin: [
         { title: "Dashboard", icon: "mdi-home", route: "/" },
         { title: "Users", icon: "mdi-account-multiple", route: "/users" },
+        { title: "Blood Groups", icon: "mdi-water", route: "/blood_groups" },
         { title: "Settings", icon: "mdi-cogs", route: "/settings" },
         { title: "Logout", icon: "mdi-logout-variant", route: "/logout" },
       ],
