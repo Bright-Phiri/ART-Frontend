@@ -51,13 +51,10 @@ export default {
       if (!this.user.password || !this.user.password_confirmation || !this.user.token) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
-        if (this.user.password != this.user.password_confirmation){
-          this.$swal("Error", "Passwords dont match", "error")
-          return;
-        }
         this.overlay = true
         let userPayload = {
           password: this.user.password,
+          password_confirmation: this.user.password_confirmation,
           token: this.user.token
         }
         let endPoint = `${config.BASE_URL}/password/reset`;
