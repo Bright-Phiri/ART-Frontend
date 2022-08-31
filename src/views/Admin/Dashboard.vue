@@ -103,7 +103,7 @@
         <v-card>
           <v-card-text>
             <div class="justify-center">
-              <apexchart width="100%" height="224%" type="area" :options="option1" :series="stati"></apexchart>
+              <apexchart width="100%" height="224%" type="area" :options="statisticsOptions" :series="stati"></apexchart>
             </div>
           </v-card-text>
         </v-card>
@@ -137,7 +137,7 @@ export default {
       lab_orders: 0,
       results: 0,
       user_role: null,
-      option1: {
+      statisticsOptions: {
         xaxis: {
           categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
@@ -165,36 +165,7 @@ export default {
       connected() { },
       rejected() { },
       received(data) {
-        switch (data.res) {
-          case "all":
-            this.statistics(data)
-            this.labOrdersStati(data)
-            break;
-          case "patients":
-            this.patients = data.patients
-            this.updateChart(this.series, 1, this.patients);
-            break;
-          case "users":
-            this.users = data.users
-            this.updateChart(this.series, 0, this.users);
-            break;
-          case "lab_orders":
-            this.labOrdersStati(data)
-            break;
-          case "lab_orders_count":
-            this.lab_orders = data.lab_orders_count
-            this.labOrdersStati(data)
-            this.updateChart(this.series, 0, this.lab_orders);
-            break;
-          case "results":
-            this.results = data.results
-            this.updateChart(this.series, 2, this.results);
-            break;
-          default:
-            this.statistics(data)
-            this.labOrdersStati(data)
-            break;
-        }
+        this.displayDashboardData(data);
       },
       disconnected() { },
     },
@@ -307,14 +278,49 @@ export default {
       this.stati = [{
         data: labOrdersStatistics
       }]
+    },
+    displayDashboardData(data){
+      switch (data.res) {
+          case "all":
+            this.statistics(data)
+            this.labOrdersStati(data)
+            break;
+          case "patients":
+            this.patients = data.patients
+            this.updateChart(this.series, 1, this.patients);
+            break;
+          case "users":
+            this.users = data.users
+            this.updateChart(this.series, 0, this.users);
+            break;
+          case "lab_orders":
+            this.labOrdersStati(data)
+            break;
+          case "lab_orders_count":
+            this.lab_orders = data.lab_orders_count
+            this.labOrdersStati(data)
+            this.updateChart(this.series, 0, this.lab_orders);
+            break;
+          case "results":
+            this.results = data.results
+            this.updateChart(this.series, 2, this.results);
+            break;
+          default:
+            this.statistics(data)
+            this.labOrdersStati(data)
+            break;
+        }
+    },
+    setUser(){
+      let loggedUser = this.$store.state.user
+      this.user_role = loggedUser.role
     }
   },
   mounted() {
     this.$cable.subscribe({
       channel: "DashboardChannel",
     });
-    let loggedUser = this.$store.state.user
-    this.user_role = loggedUser.role
+    this.setUser();
   }
 }
 </script>
