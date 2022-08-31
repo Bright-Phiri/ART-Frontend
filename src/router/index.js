@@ -173,6 +173,12 @@ const routes = [{
             import ('../views/SignUp.vue')
     },
     {
+        path: '/forgot',
+        name: 'forgot',
+        component: () =>
+            import ('../views/ForgotPassword.vue')
+    },
+    {
         path: '/logout',
         name: 'logout',
         beforeEnter(to, from, next) {
