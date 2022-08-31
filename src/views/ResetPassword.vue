@@ -7,10 +7,15 @@
             <v-card-title>
               <span class="teal--text darken-4 font-weight-light">Reset Your Password</span>
             </v-card-title>
-            <v-card-subtitle class="mt-1">Lost your password? Please enter your email address. You will receive a link to crate a new password via email.</v-card-subtitle>
+            <v-card-subtitle>Reset your password below</v-card-subtitle>
             <v-card-text>
-              <v-form v-on:submit.prevent="forgotPassword">
-                <v-text-field label="Email Address" outlined dense v-model.trim="user.email"></v-text-field>
+              <v-form v-on:submit.prevent="resetPassword">
+                <v-text-field label="Password Reset Token" type="text" outlined dense v-model.trim="user.token">
+                </v-text-field>
+                <v-text-field label="New Password" type="password" outlined dense v-model.trim="user.password">
+                </v-text-field>
+                <v-text-field label="Re-enter new password" type="password" outlined dense v-model.trim="user.password_confirmation">
+                </v-text-field>
                 <v-btn type="submit" dark depressed class="text-capitalize font-weight-light mb-2" rounded
                   color="#008F96">Reset Password</v-btn>
               </v-form>
@@ -34,28 +39,35 @@ export default {
   data() {
     return {
       user: {
-        email: null
+        password: null,
+        password_confirmation: null,
+        token: null
       },
       overlay: false
     }
   },
   methods: {
-    forgotPassword() {
-      if (!this.user.email) {
-        this.$swal("Fields validation", "Please enter your email", "warning")
+    resetPassword() {
+      if (!this.user.password || !this.user.password_confirmation || !this.user.token) {
+        this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
+        if (this.user.password != this.user.password_confirmation){
+          this.$swal("Error", "Passwords dont match", "error")
+          return;
+        }
         this.overlay = true
         let userPayload = {
-          email: this.user.email
+          password: this.user.password,
+          token: this.user.token
         }
-        let endPoint = `${config.BASE_URL}/password/forgot`;
+        let endPoint = `${config.BASE_URL}/password/reset`;
         axios
           .post(endPoint, userPayload)
           .then(response => {
             if (response.data.status === "success") {
               this.overlay = false
               this.$swal(response.data.status, response.data.message, response.data.status).then(()=>{
-                 this.$router.push({path: '/reset'})
+                 this.$router.push({path: '/login'})
               })
             } else {
               this.$swal(response.data.status, response.data.message, response.data.status)
