@@ -19,10 +19,13 @@
                 </v-text-field>
                 <v-btn type="submit" dark depressed class="text-capitalize font-weight-light" block rounded
                   color="#008F96">Sign in</v-btn>
-                <div class="d-flex">
+                  <div class="d-flex" dense>
                   <v-divider class="my-4 mr-2"></v-divider>
                   <span class="mt-1">or</span>
                   <v-divider class="my-4 ml-2"></v-divider>
+                </div>
+                <div class="text-center" dense>
+                  <router-link class="text-decoration-none" to="/signup">Sign up</router-link>
                 </div>
               </v-form>
             </v-card-text>
@@ -30,12 +33,9 @@
               <v-progress-circular indeterminate color="#008F96" size="64"></v-progress-circular>
             </v-overlay>
           </v-card>
-          <div class="d-flex justify-center mt-4">
-            <span class="text-center font-weight-light">
-              New to ART?
-              <router-link class="text-decoration-none" to="/signup">Sign up.</router-link>
-            </span>
-          </div>
+         <div  class="text-center mt-1">
+          <router-link class="text-decoration-none" to="/forgot">Forgot Password?</router-link>
+         </div>
         </v-col>
       </v-row>
     </v-container>
