@@ -156,7 +156,7 @@ export default {
                 })
               } else {
                 this.overlay = false
-                this.$swal(response.data.status, response.data.message, response.data.status)
+                this.$swal(response.data.status, response.data.errors, response.data.status)
               }
             })
             .catch((error) => {
