@@ -113,6 +113,11 @@
                 <v-icon small v-on:click="selectUserRecord(item.id)" color="primary">mdi-pencil</v-icon>
                 <v-icon small color="red" v-on:click="deleteUser(item.id)">mdi-delete</v-icon>
               </template>
+              <template  v-slot:[`item.avatar`]="{ item }">
+                <v-avatar size="28" class="my-2">
+                  <v-img :src="item.attributes.avatar"></v-img>
+                </v-avatar>
+          </template>
             </v-data-table>
             <v-divider class="my-4 mx-0"></v-divider>
           </v-card-text>
@@ -152,6 +157,11 @@ export default {
           text: "#",
           align: "start",
           value: "attributes.id",
+        },
+        { 
+          text: "Avatar", 
+          value: "avatar",
+          sortable: false 
         },
         {
           text: "Username",
