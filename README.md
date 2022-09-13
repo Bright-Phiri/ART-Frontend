@@ -27,7 +27,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Screenshots
 
 <img width="960" alt="Screenshot 2022-08-23 133957" src="https://user-images.githubusercontent.com/75673222/186187876-75364d30-fe46-42aa-96ef-954cfdd50b2f.png">
-<img width="960" alt="Screenshot 2022-08-23 163857" src="https://user-images.githubusercontent.com/75673222/186187952-6256da7b-45fb-4e98-bcfc-4a06bb1026f0.png">
+<img width="960" alt="Screenshot 2022-09-13 174528" src="https://user-images.githubusercontent.com/75673222/189947067-3bf8cf80-bb2c-4d4c-85e3-9c5bcf68a399.png">
 <img width="960" alt="Screenshot 2022-08-23 163925" src="https://user-images.githubusercontent.com/75673222/186188030-f60ff313-fa84-4c8f-a1cb-6d6a06bc1d2f.png">
 <img width="960" alt="Screenshot 2022-08-23 163942" src="https://user-images.githubusercontent.com/75673222/186188086-124fcf8d-c20b-4095-bf49-b735b5e62a2a.png">
 <img width="960" alt="Screenshot 2022-08-23 164126" src="https://user-images.githubusercontent.com/75673222/186188145-e2f79a71-c6da-468d-ab61-3210dc40f881.png">
