@@ -46,7 +46,7 @@
                 <span>{{ item.created_at.substr(0, 10) }}</span>
               </template>
               <template v-slot:[`item.verified`]="{ item }">
-                 <v-chip class="text-center" small style="width: 65px" :color="getColor(item.verified)" dark>
+                 <v-chip class="text-center" small style="width: 65px" outlined :color="getColor(item.verified)" dark>
                   {{item.verified ?"verified":"pending"}}
                 </v-chip>
               </template>

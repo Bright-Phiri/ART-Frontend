@@ -124,8 +124,8 @@
                 </div>
               </template>
               <template v-slot:[`item.status`]="{ item }">
-                 <v-chip class="text-center" small style="width: 65px" dark>
-                  {{item.attributes.status ? "active" : "inactive"}}
+                 <v-chip class="text-center" small style="width: 65px" outlined :color="getColor(item.attributes.status)" dark>
+                  {{item.attributes.status ? "Active" : "Inactive"}}
                 </v-chip>
               </template>
             </v-data-table>
