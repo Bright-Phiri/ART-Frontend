@@ -118,7 +118,8 @@
                   <v-avatar size="28" class="my-2">
                   <v-img :src="item.attributes.avatar"></v-img>
                   </v-avatar>
-                  <div class="d-flex flex-column ms-1">
+                  <div class="d-flex flex-column ms-2">
+                  <a class="text-decoration-none font-weight-normal text-capitalize">{{item.attributes.username}}</a>
                    <small>@{{item.attributes.username}}</small>
                   </div>
                 </div>
