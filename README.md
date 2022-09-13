@@ -33,6 +33,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 <img width="960" alt="Screenshot 2022-08-23 164126" src="https://user-images.githubusercontent.com/75673222/186188145-e2f79a71-c6da-468d-ab61-3210dc40f881.png">
 <img width="959" alt="Screenshot 2022-08-23 164105" src="https://user-images.githubusercontent.com/75673222/186188156-3cd08872-2b87-4522-8651-d2bd73aeae37.png">
 <img width="960" alt="Screenshot 2022-08-23 164013" src="https://user-images.githubusercontent.com/75673222/186188161-c571754f-d9de-44e2-8724-f67431779d47.png">
-<img width="960" alt="Screenshot 2022-09-06 122554" src="https://user-images.githubusercontent.com/75673222/188612212-86ccaacd-add4-45c9-9688-cd952e6c0786.png">
+<img width="960" alt="Screenshot 2022-09-13 154809" src="https://user-images.githubusercontent.com/75673222/189918720-859425d4-8942-43db-8859-00e66dee0e12.png">
 
 
