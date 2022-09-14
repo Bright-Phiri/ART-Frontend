@@ -114,10 +114,16 @@
                 <v-icon small color="red" v-on:click="deleteUser(item.id)">mdi-delete</v-icon>
               </template>
               <template  v-slot:[`item.avatar`]="{ item }">
-                <v-avatar size="28" class="my-2">
+                <div class="d-flex align-center">
+                  <v-avatar size="28" class="my-2">
                   <v-img :src="item.attributes.avatar"></v-img>
-                </v-avatar>
-          </template>
+                  </v-avatar>
+                  <div class="d-flex flex-column ms-2">
+                  <a class="text-decoration-none font-weight-normal text-capitalize">{{item.attributes.username}}</a>
+                   <small>@{{item.attributes.username}}</small>
+                  </div>
+                </div>
+              </template>
             </v-data-table>
             <v-divider class="my-4 mx-0"></v-divider>
           </v-card-text>
@@ -159,13 +165,9 @@ export default {
           value: "attributes.id",
         },
         { 
-          text: "Avatar", 
+          text: "User", 
           value: "avatar",
           sortable: false 
-        },
-        {
-          text: "Username",
-          value: "attributes.username",
         },
         {
           text: "Email Address",

@@ -103,18 +103,25 @@
         <v-card>
           <v-card-text>
             <div class="justify-center">
-              <apexchart width="100%" height="224%" type="area" :options="statisticsOptions" :series="stati"></apexchart>
+              <apexchart width="100%" height="226%" type="area" :options="statisticsOptions" :series="stati">
+              </apexchart>
             </div>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col cols="12" lg="4">
         <v-card>
-          <v-card-title class="d-flex font-weight-light">Statistics</v-card-title>
+          <v-card-title class="d-flex justify-space-between font-weight-light">
+            Statistics
+            <v-btn icon>
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </v-card-title>
           <v-divider class="mx-4"></v-divider>
           <v-card-text>
             <div class="d-flex justify-center">
-              <apexchart v-if="series && series.length" width="380" type="donut" :options="options" :series="series"></apexchart>
+              <apexchart v-if="series && series.length" width="380" type="donut" :options="options" :series="series">
+              </apexchart>
             </div>
           </v-card-text>
         </v-card>
@@ -268,39 +275,39 @@ export default {
         data: labOrdersStatistics
       }]
     },
-    displayDashboardData(data){
+    displayDashboardData(data) {
       switch (data.res) {
-          case "all":
-            this.statistics(data)
-            this.labOrdersStati(data)
-            break;
-          case "patients":
-            this.patients = data.patients
-            this.updateChart(this.series, 1, this.patients);
-            break;
-          case "users":
-            this.users = data.users
-            this.updateChart(this.series, 0, this.users);
-            break;
-          case "lab_orders":
-            this.labOrdersStati(data)
-            break;
-          case "lab_orders_count":
-            this.lab_orders = data.lab_orders_count
-            this.labOrdersStati(data)
-            this.updateChart(this.series, 0, this.lab_orders);
-            break;
-          case "results":
-            this.results = data.results
-            this.updateChart(this.series, 2, this.results);
-            break;
-          default:
-            this.statistics(data)
-            this.labOrdersStati(data)
-            break;
-        }
+        case "all":
+          this.statistics(data)
+          this.labOrdersStati(data)
+          break;
+        case "patients":
+          this.patients = data.patients
+          this.updateChart(this.series, 1, this.patients);
+          break;
+        case "users":
+          this.users = data.users
+          this.updateChart(this.series, 0, this.users);
+          break;
+        case "lab_orders":
+          this.labOrdersStati(data)
+          break;
+        case "lab_orders_count":
+          this.lab_orders = data.lab_orders_count
+          this.labOrdersStati(data)
+          this.updateChart(this.series, 0, this.lab_orders);
+          break;
+        case "results":
+          this.results = data.results
+          this.updateChart(this.series, 2, this.results);
+          break;
+        default:
+          this.statistics(data)
+          this.labOrdersStati(data)
+          break;
+      }
     },
-    setUser(){
+    setUser() {
       let loggedUser = this.$store.state.user
       this.user_role = loggedUser.role
     }
