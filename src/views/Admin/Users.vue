@@ -124,11 +124,6 @@
                   </div>
                 </div>
               </template>
-              <template v-slot:[`item.status`]="{ item }">
-                 <v-chip class="text-center" small style="width: 65px" outlined :color="getColor(item.attributes.status)" dark>
-                  {{item.attributes.status ? "Active" : "Inactive"}}
-                </v-chip>
-              </template>
             </v-data-table>
             <v-divider class="my-4 mx-0"></v-divider>
           </v-card-text>
@@ -187,10 +182,6 @@ export default {
           value: "attributes.role",
         },
         {
-          text: "Status",
-          value: "status",
-        },
-        {
           text: "Actions",
           value: "action",
         },
@@ -201,10 +192,6 @@ export default {
   methods: {
     selectFile(files) {
       this.user.attributes.avatar = files;
-    },
-    getColor(active) {
-      if (active) return "success";
-      else return "warning";
     },
     saveUser() {
       if (
