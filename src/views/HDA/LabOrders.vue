@@ -49,7 +49,7 @@ export default {
   name: "LabOrders",
   data() {
     return {
-      order_types: ["Active", "Archieved"],
+      order_types: ["Active", "Archived"],
       orderType: null,
       heading: "LabOrders",
       lab_orders: [],
@@ -104,8 +104,8 @@ export default {
           this.loadLabOrders("lab_orders");
           break;
         }
-        case "Archieved": {
-          this.loadLabOrders("lab_orders_archieve");
+        case "Archived": {
+          this.loadLabOrders("lab_orders_archive");
           break;
         }
       }
