@@ -132,7 +132,7 @@ export default {
           break;
         }
         case "Archieved": {
-          this.loadLabOrders("lab_orders_archieve");
+          this.loadLabOrders("lab_orders_archive");
           break;
         }
       }
