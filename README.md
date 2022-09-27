@@ -25,5 +25,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Demo
 
-![git](https://user-images.githubusercontent.com/75673222/192482116-6644e515-7689-448a-baa8-9dcee981e7b1.gif)
+![bandicam 2022-09-16 15-25-22-280 (online-video-cutter com)(2)](https://user-images.githubusercontent.com/75673222/192486328-f18f8adc-ad13-4d96-aed9-4ebb75d4dabd.gif)
 
