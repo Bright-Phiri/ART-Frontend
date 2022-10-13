@@ -151,9 +151,15 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` },
           })
           .then((response) => {
-            this.$swal("Message", response.data.message, "info").then(() => {
+            if (response.data.status === "success"){
+              this.$swal("Message", response.data.message, "info").then(() => {
               this.loadLabOrders("lab_orders");
             });
+            } else{
+              this.$swal("Message", response.data.message.base[0], "error").then(() => {
+              this.loadLabOrders("lab_orders");
+            });
+            }
           })
           .catch((error) => {
             this.$swal("Error", error + ", Couldn't reach API", "error");
