@@ -156,7 +156,7 @@ export default {
               this.loadLabOrders("lab_orders");
             });
             } else{
-              this.$swal("Message", response.data.message.base[0], "error").then(() => {
+              this.$swal("Message", response.data.message, "error").then(() => {
               this.loadLabOrders("lab_orders");
             });
             }
