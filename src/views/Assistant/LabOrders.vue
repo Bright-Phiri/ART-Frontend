@@ -187,7 +187,7 @@ export default {
       this.patient_id = patient_id;
     },
     addLabOrderResults() {
-      if (!this.lab_order.hiv_res || !this.lab_order.tisuue_res) {
+      if (!this.lab_order.hiv_res) {
         this.$swal(
           "Fields validation",
           "Please fill in all required fields",
