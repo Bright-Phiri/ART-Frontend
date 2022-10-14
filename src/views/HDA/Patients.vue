@@ -205,7 +205,7 @@ export default {
         patient_id: null,
         qrcode: null,
         blood_type: null,
-        tissue_name: null,
+        tissue_name: "",
         requested_by: null,
         taken_by: null
       },
