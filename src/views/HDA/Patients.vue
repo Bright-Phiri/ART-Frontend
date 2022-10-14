@@ -336,7 +336,7 @@ export default {
       this.lab_order.patient_id = patient_id
     },
     addLabOrder() {
-      if (!this.lab_order.qrcode || !this.lab_order.blood_type || !this.lab_order.tissue_name || !this.lab_order.requested_by) {
+      if (!this.lab_order.qrcode || !this.lab_order.blood_type || !this.lab_order.requested_by) {
         this.$swal("Fields validation", "Please fill in all required fields", "warning")
       } else {
         this.overlay = true
