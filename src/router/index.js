@@ -122,6 +122,25 @@ const routes = [{
                 }
             },
             {
+                path: '/patient/laborders',
+                name: 'patientLaborders',
+                component: () =>
+                    import ('../views/HDA/PatientLabOrders.vue'),
+                beforeEnter(to, from, next) {
+                    if (!store.state.isUserLoggedIn) {
+                        next({ path: "/login" })
+                    } else {
+                        let loggedUser = store.state.user
+                        let user_role = loggedUser.role
+                        if (user_role != "HDA Personnel") {
+                            next({ path: "/login" })
+                        } else {
+                            next();
+                        }
+                    }
+                }
+            },
+            {
                 path: '/assistant',
                 name: 'assistant',
                 component: () =>

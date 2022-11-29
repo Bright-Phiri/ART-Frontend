@@ -166,8 +166,9 @@
               <template v-slot:[`item.action`]="{ item }">
                 <v-icon small class="mr-0" color="#2A9B90" v-on:click="showLabOrderDialog(item.id)">mdi-plus-box
                 </v-icon>
-                <v-icon small class="mr-0" v-on:click="selectPatientRecord(item.id)" color="secondary">mdi-pencil
+                <v-icon small class="mr-0" v-on:click="selectPatientRecord(item.id)" color="primary">mdi-pencil
                 </v-icon>
+                <v-icon small class="mr-0" color="black" v-on:click="showPatientLabOrders(item.id, item.first_name, item.last_name)">mdi-eye</v-icon>
                 <v-icon small class="mr-0" color="red" v-on:click="deletePatient(item.id)">mdi-delete</v-icon>
               </template>
             </v-data-table>
@@ -334,6 +335,23 @@ export default {
       this.lab_order.qrcode = this.qrCodeId
       this.labOrderDialog = true
       this.lab_order.patient_id = patient_id
+    },
+    showPatientLabOrders(patient_id, first_name, last_name){
+      let endpoint = `${config.BASE_URL}/patients/${patient_id}/lab_orders/${patient_id}`;
+      axios
+        .get(endpoint, {
+          headers: { Authorization: `Bearer ${this.$store.state.token}` },
+        })
+        .then((response) => {
+          if (response.data.status === "error"){
+            this.$swal("Message", response.data.message, "info");
+          } else{
+            this.$router.push({name: 'patientLaborders', params: {patient_id, first_name, last_name}})
+          }
+        })
+        .catch((error) => {
+          this.$swal("Error", error + ", Couldn't reach API", "error");
+        });
     },
     addLabOrder() {
       if (!this.lab_order.qrcode || !this.lab_order.blood_type || !this.lab_order.requested_by) {
