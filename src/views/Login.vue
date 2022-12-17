@@ -71,7 +71,7 @@ export default {
         axios
           .post(authEndpoint, userPayload)
           .then(response => {
-            if (response.data.status === "success") {
+            if (response.status === 200) {
               this.overlay = false
               let user = response.data.user
               user.avatar = response.data.avatar
@@ -86,7 +86,7 @@ export default {
             }
           })
           .catch(error => {
-            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.$swal("Error", error.response.data.message, "error")
             this.overlay = false
           })
       }

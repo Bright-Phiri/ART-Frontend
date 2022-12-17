@@ -297,20 +297,17 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
-            if (response.data.status === "success") {
+            if (response.status === 201){
               this.overlay = false
               this.$swal("Message", response.data.message, "success").then(() => {
                 this.addPatientDialog = false
                 this.$refs.patientForm.reset()
                 this.loadPatients()
               })
-            } else {
-              this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
-              this.overlay = false
             }
           })
           .catch(error => {
-            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false
           })
       }
@@ -327,7 +324,7 @@ export default {
           this.editPatientDialog = true
         })
         .catch((error) => {
-          this.$swal("Error", error + ", Couldn't reach API", "error");
+          this.$swal("error", error.response.data.message, "error")
         })
     },
     showLabOrderDialog(patient_id) {
@@ -343,14 +340,12 @@ export default {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
-          if (response.data.status === "error"){
-            this.$swal("Message", response.data.message, "info");
-          } else{
+          if (response.status === 200){
             this.$router.push({name: 'patientLaborders', params: {patient_id, first_name, last_name}})
           }
         })
         .catch((error) => {
-          this.$swal("Error", error + ", Couldn't reach API", "error");
+          this.$swal("Message", error.response.data.message, "info")
         });
     },
     addLabOrder() {
@@ -371,19 +366,16 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
-            if (response.data.status === "success") {
+            if (response.status === 201) {
               this.overlay = false
               this.$swal("Message", response.data.message, "success").then(() => {
                 this.$refs.consultationForm.reset()
                 this.labOrderDialog = false
               })
-            } else {
-              this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
-              this.overlay = false
             }
           })
           .catch(error => {
-            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.$swal("Error", error.response.data.message, "error")
             this.overlay = false
           })
       }
@@ -409,20 +401,17 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` }
           })
           .then(response => {
-            if (response.data.status === "success") {
+            if (response.status === 200) {
               this.overlay = false
               this.$swal("Message", response.data.message, "success").then(() => {
                 this.editPatientDialog = false
                 this.$refs.editPatientForm.reset()
                 this.loadPatients()
               })
-            } else {
-              this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
-              this.overlay = false
             }
           })
           .catch(error => {
-            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false
           })
       }
@@ -445,7 +434,7 @@ export default {
                 headers: { Authorization: `Bearer ${this.$store.state.token}` }
               })
               .then((response) => {
-                if (response.data.status === "success") {
+                if (response.status === 200) {
                   this.$swal("Message", response.data.message, "success").then(() => {
                     this.loadPatients()
                   }
@@ -453,7 +442,7 @@ export default {
                 }
               })
               .catch((error) => {
-                this.$swal("Error", error + ", Couldn't reach API", "error");
+                this.$swal("Error", error.response.data.message, "error")
               })
           }
         });

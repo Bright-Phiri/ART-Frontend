@@ -132,7 +132,7 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` },
           })
           .then((response) => {
-            if (response.data.status === "success") {
+            if (response.status === 201) {
               this.overlay = false;
               this.$swal("Message", response.data.message, "success").then(
                 () => {
@@ -141,17 +141,10 @@ export default {
                   this.loadBloodGroups();
                 }
               );
-            } else {
-              this.$swal(
-                response.data.status,
-                response.data.message + ", " + response.data.errors,
-                response.data.status
-              );
-              this.overlay = false;
             }
           })
           .catch((error) => {
-            this.$swal("Error", error + ", Couldn't reach API", "error");
+            this.$swal("error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false;
           });
       }
@@ -176,7 +169,7 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` },
           })
           .then((response) => {
-            if (response.data.status === "success") {
+            if (response.status === 200) {
               this.overlay = false;
               this.$swal("Message", response.data.message, "success").then(
                 () => {
@@ -185,17 +178,10 @@ export default {
                   this.loadBloodGroups();
                 }
               );
-            } else {
-              this.$swal(
-                response.data.status,
-                response.data.message + ", " + response.data.errors,
-                response.data.status
-              );
-              this.overlay = false;
             }
           })
           .catch((error) => {
-            this.$swal("Error", error + ", Couldn't reach API", "error");
+            this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false;
           });
       }
@@ -247,7 +233,7 @@ export default {
               headers: { Authorization: `Bearer ${this.$store.state.token}` },
             })
             .then((response) => {
-              if (response.data.status === "success") {
+              if (response.status === 200) {
                 this.$swal("Message", response.data.message, "success").then(
                   () => {
                     this.loadBloodGroups();

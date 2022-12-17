@@ -146,7 +146,7 @@ export default {
               headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
             .then((response) => {
-              if (response.data.status === "success") {
+              if (response.status === 200) {
                 this.overlay = false
                 this.$swal("Message", response.data.message, "success").then(() => {
                   this.user.password = null
@@ -154,14 +154,11 @@ export default {
                   updUser.avatar = response.data.avatar
                   this.$store.commit('setUser', updUser)
                 })
-              } else {
-                this.overlay = false
-                this.$swal(response.data.status, response.data.errors, response.data.status)
-              }
+              } 
             })
             .catch((error) => {
               this.overlay = false
-              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             })
         } else {
           this.overlay = false
@@ -190,19 +187,16 @@ export default {
               headers: { Authorization: `Bearer ${this.$store.state.token}` }
             })
             .then((response) => {
-              if (response.data.status === "success") {
+              if (response.status === 200) {
                 this.overlay = false
                 this.$swal("Message", response.data.message, "success").then(() => {
                   this.$refs.passwordForm.reset()
                 })
-              } else {
-                this.overlay = false
-                this.$swal(response.data.status, response.data.message + ", " + response.data.errors, response.data.status)
-              }
+              } 
             })
             .catch((error) => {
               this.overlay = false
-              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             })
         } else {
           this.overlay = false
