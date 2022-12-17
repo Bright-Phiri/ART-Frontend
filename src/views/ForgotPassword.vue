@@ -52,18 +52,15 @@ export default {
         axios
           .post(endPoint, userPayload)
           .then(response => {
-            if (response.data.status === "success") {
+            if (response.status === 200) {
               this.overlay = false
               this.$swal(response.data.status, response.data.message, response.data.status).then(()=>{
                  this.$router.push({path: '/reset'})
               })
-            } else {
-              this.$swal(response.data.status, response.data.message, response.data.status)
-              this.overlay = false
             }
           })
           .catch(error => {
-            this.$swal("Error", error + ", Couldn't reach API", "error")
+            this.$swal("Error", error.response.data.message, "error")
             this.overlay = false
           })
       }

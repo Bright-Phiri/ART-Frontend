@@ -151,18 +151,15 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` },
           })
           .then((response) => {
-            if (response.data.status === "success"){
+            if (response.status === 200){
               this.$swal("Message", response.data.message, "info").then(() => {
-              this.loadLabOrders("lab_orders");
-            });
-            } else{
-              this.$swal("Message", response.data.message, "error").then(() => {
               this.loadLabOrders("lab_orders");
             });
             }
           })
           .catch((error) => {
-            this.$swal("Error", error + ", Couldn't reach API", "error");
+            this.$swal("Error", error.response.data.message, "error")
+            this.loadLabOrders("lab_orders");
           });
       }
     },
@@ -206,7 +203,7 @@ export default {
             headers: { Authorization: `Bearer ${this.$store.state.token}` },
           })
           .then((response) => {
-            if (response.data.status === "success") {
+            if (response.status === 201) {
               this.overlay = false;
               this.$swal("Message", response.data.message, "success").then(
                 () => {
@@ -215,17 +212,10 @@ export default {
                   this.loadLabOrders("lab_orders");
                 }
               );
-            } else {
-              this.$swal(
-                response.data.status,
-                response.data.message,
-                response.data.status
-              );
-              this.overlay = false;
-            }
+            } 
           })
           .catch((error) => {
-            this.$swal("Error", error + ", Couldn't reach API", "error");
+            this.$swal("Error", error.response.data.message, "error")
             this.overlay = false;
           });
       }
