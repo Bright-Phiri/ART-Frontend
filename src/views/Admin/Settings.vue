@@ -157,8 +157,12 @@ export default {
               } 
             })
             .catch((error) => {
-              this.overlay = false
+              if (!error.status) {
+                this.$swal("Error", error + ", Couldn't reach API", "error");
+                this.overlay = false;
+              }
               this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
+              this.overlay = false
             })
         } else {
           this.overlay = false
@@ -195,8 +199,12 @@ export default {
               } 
             })
             .catch((error) => {
-              this.overlay = false
+              if (!error.status) {
+                this.$swal("Error", error + ", Couldn't reach API", "error");
+                this.overlay = false;
+              }
               this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
+              this.overlay = false
             })
         } else {
           this.overlay = false

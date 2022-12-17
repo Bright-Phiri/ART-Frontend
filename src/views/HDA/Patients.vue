@@ -307,6 +307,10 @@ export default {
             }
           })
           .catch(error => {
+            if (!error.status) {
+              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.overlay = false;
+            }
             this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false
           })
@@ -324,6 +328,9 @@ export default {
           this.editPatientDialog = true
         })
         .catch((error) => {
+          if (!error.status) {
+            this.$swal("Error", error + ", Couldn't reach API", "error");
+          }
           this.$swal("error", error.response.data.message, "error")
         })
     },
@@ -345,6 +352,9 @@ export default {
           }
         })
         .catch((error) => {
+          if (!error.status) {
+            this.$swal("Error", error + ", Couldn't reach API", "error");
+          }
           this.$swal("Message", error.response.data.message, "info")
         });
     },
@@ -375,6 +385,10 @@ export default {
             }
           })
           .catch(error => {
+            if (!error.status) {
+              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.overlay = false;
+            }
             this.$swal("Error", error.response.data.message, "error")
             this.overlay = false
           })
@@ -411,6 +425,10 @@ export default {
             }
           })
           .catch(error => {
+            if (!error.status) {
+              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.overlay = false;
+            }
             this.$swal("Error", error.response.data.message + ", " + error.response.data.errors, "error")
             this.overlay = false
           })
@@ -442,6 +460,9 @@ export default {
                 }
               })
               .catch((error) => {
+                if (!error.status) {
+                  this.$swal("Error", error + ", Couldn't reach API", "error");
+                }
                 this.$swal("Error", error.response.data.message, "error")
               })
           }
