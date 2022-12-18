@@ -155,7 +155,10 @@ export default {
               );
           })
           .catch((error) => {
-            this.overlay = false;
+            if (!error.status) {
+              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.overlay = false;
+            }
             this.$swal("Error", error.response.data.errors, "error");
             this.overlay = false;
           });

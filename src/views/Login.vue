@@ -86,6 +86,10 @@ export default {
             }
           })
           .catch(error => {
+            if (!error.status) {
+              this.$swal("Error", error + ", Couldn't reach API", "error");
+              this.overlay = false;
+            }
             this.$swal("Error", error.response.data.message, "error")
             this.overlay = false
           })
