@@ -147,19 +147,20 @@ export default {
         axios
           .post(endpoint, userPayload)
           .then((response) => {
-              this.overlay = false;
-              this.$swal("Message", response.data.message, "success").then(
-                () => {
+              if (response.status === 201){
+                this.overlay = false;
+                this.$swal("Message", response.data.message, "success").then(() => {
                   this.$router.push({ path: "/login" });
                 }
-              );
+                );
+              }
           })
           .catch((error) => {
             if (!error.status) {
               this.$swal("Error", error + ", Couldn't reach API", "error");
               this.overlay = false;
             }
-            this.$swal("Error", error.response.data.errors, "error");
+            this.$swal("Error", error.response.data.message, "error");
             this.overlay = false;
           });
       }

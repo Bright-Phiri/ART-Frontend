@@ -241,8 +241,8 @@ export default {
               headers: { Authorization: `Bearer ${this.$store.state.token}` },
             })
             .then((response) => {
-              if (response.status === 200) {
-                this.$swal("Message", response.data.message, "success").then(
+              if (response.status === 204) {
+                this.$swal("Message", "Blood Group successfully deleted", "success").then(
                   () => {
                     this.loadBloodGroups();
                   }
@@ -250,10 +250,7 @@ export default {
               }
             })
             .catch((error) => {
-              if (!error.status) {
-                this.$swal("Error", error + ", Couldn't reach API", "error");
-              }
-              this.$swal("Error", error.response.data.message, "error")
+              this.$swal("Error", error + ", Couldn't reach API", "error");
             });
         }
       });
