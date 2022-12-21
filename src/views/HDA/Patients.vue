@@ -452,8 +452,8 @@ export default {
                 headers: { Authorization: `Bearer ${this.$store.state.token}` }
               })
               .then((response) => {
-                if (response.status === 200) {
-                  this.$swal("Message", response.data.message, "success").then(() => {
+                if (response.status === 204) {
+                  this.$swal("Message", "Patient successfully deleted", "success").then(() => {
                     this.loadPatients()
                   }
                   );
