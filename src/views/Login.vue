@@ -74,7 +74,6 @@ export default {
             if (response.status === 200) {
               this.overlay = false
               let user = response.data.user
-              user.avatar = response.data.avatar
               this.$store.commit('setToken', response.data.token)
               this.$store.commit('setUser', user)
               this.$store.commit('setTempPass', this.user.password)
