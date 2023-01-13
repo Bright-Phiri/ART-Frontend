@@ -10,29 +10,29 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="6">
-                      <v-text-field label="Username" v-model.trim="user.attributes.username" dense></v-text-field>
+                      <v-text-field label="Username" v-model.trim="user.username" dense></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field type="email" label="Email" v-model.trim="user.attributes.email" dense>
+                      <v-text-field type="email" label="Email" v-model.trim="user.email" dense>
                       </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field label="Phone" v-model.trim="user.attributes.phone" dense></v-text-field>
+                      <v-text-field label="Phone" v-model.trim="user.phone" dense></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-autocomplete label="Role" :items="roles" v-model.trim="user.attributes.role" dense>
+                      <v-autocomplete label="Role" :items="roles" v-model.trim="user.role" dense>
                       </v-autocomplete>
                     </v-col>
                     <v-col cols="12">
                       <v-file-input accept="image/*" show-size label="Avatar" v-on:change="selectFile"></v-file-input>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field type="password" label="Password" v-model.trim="user.attributes.password" dense>
+                      <v-text-field type="password" label="Password" v-model.trim="user.password" dense>
                       </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
                       <v-text-field type="password" label="Confirm Password"
-                        v-model.trim="user.attributes.password_confirmation" dense></v-text-field>
+                        v-model.trim="user.password_confirmation" dense></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -55,17 +55,17 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="6">
-                      <v-text-field label="Username" v-model.trim="user.attributes.username" dense></v-text-field>
+                      <v-text-field label="Username" v-model.trim="user.username" dense></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field type="email" label="Email" v-model.trim="user.attributes.email" dense>
+                      <v-text-field type="email" label="Email" v-model.trim="user.email" dense>
                       </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field label="Phone" v-model.trim="user.attributes.phone" dense></v-text-field>
+                      <v-text-field label="Phone" v-model.trim="user.phone" dense></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-autocomplete label="Role" :items="roles" v-model.trim="user.attributes.role" dense>
+                      <v-autocomplete label="Role" :items="roles" v-model.trim="user.role" dense>
                       </v-autocomplete>
                     </v-col>
                     <v-col cols="12">
@@ -73,12 +73,12 @@
                       </v-file-input>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <v-text-field type="password" label="Password" v-model.trim="user.attributes.password" dense>
+                      <v-text-field type="password" label="Password" v-model.trim="user.password" dense>
                       </v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
                       <v-text-field type="password" label="Confirm Password"
-                        v-model.trim="user.attributes.password_confirmation" dense></v-text-field>
+                        v-model.trim="user.password_confirmation" dense></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -116,11 +116,11 @@
               <template  v-slot:[`item.avatar`]="{ item }">
                 <div class="d-flex align-center">
                   <v-avatar size="28" class="my-2">
-                  <v-img :src="item.attributes.avatar"></v-img>
+                  <v-img :src="item.avatar"></v-img>
                   </v-avatar>
                   <div class="d-flex flex-column ms-2">
-                  <a class="text-decoration-none font-weight-normal text-capitalize">{{item.attributes.username}}</a>
-                   <small>@{{item.attributes.username}}</small>
+                  <a class="text-decoration-none font-weight-normal text-capitalize">{{item.username}}</a>
+                   <small>@{{item.username}}</small>
                   </div>
                 </div>
               </template>
@@ -144,15 +144,13 @@ export default {
       loading: false,
       overlay: false,
       user: {
-        attributes: {
-          username: null,
-          email: null,
-          phone: null,
-          avatar: null,
-          role: null,
-          password: null,
-          password_confirmation: null,
-        },
+        username: null,
+        email: null,
+        phone: null,
+        avatar: null,
+        role: null,
+        password: null,
+        password_confirmation: null,
       },
       user_id: null,
       roles: ["Lab Assistant", "HDA Personnel"],
@@ -162,7 +160,7 @@ export default {
         {
           text: "#",
           align: "start",
-          value: "attributes.id",
+          value: "id",
         },
         { 
           text: "User", 
@@ -171,15 +169,15 @@ export default {
         },
         {
           text: "Email Address",
-          value: "attributes.email",
+          value: "email",
         },
         {
           text: "Phone",
-          value: "attributes.phone",
+          value: "phone",
         },
         {
           text: "Role",
-          value: "attributes.role",
+          value: "role",
         },
         {
           text: "Actions",
@@ -191,17 +189,17 @@ export default {
   },
   methods: {
     selectFile(files) {
-      this.user.attributes.avatar = files;
+      this.user.avatar = files;
     },
     saveUser() {
       if (
-        !this.user.attributes.username ||
-        !this.user.attributes.email ||
-        !this.user.attributes.phone ||
-        !this.user.attributes.role ||
-        !this.user.attributes.password ||
-        !this.user.attributes.password_confirmation ||
-        !this.user.attributes.avatar
+        !this.user.username ||
+        !this.user.email ||
+        !this.user.phone ||
+        !this.user.role ||
+        !this.user.password ||
+        !this.user.password_confirmation ||
+        !this.user.avatar
       ) {
         this.$swal(
           "Fields validation",
@@ -211,12 +209,12 @@ export default {
       } else {
         this.overlay = true;
         var userPayload = new FormData();
-        userPayload.append("username", this.user.attributes.username);
-        userPayload.append("email", this.user.attributes.email);
-        userPayload.append("phone", this.user.attributes.phone);
-        userPayload.append("avatar", this.user.attributes.avatar);
-        userPayload.append("role", this.user.attributes.role);
-        userPayload.append("password", this.user.attributes.password);
+        userPayload.append("username", this.user.username);
+        userPayload.append("email", this.user.email);
+        userPayload.append("phone", this.user.phone);
+        userPayload.append("avatar", this.user.avatar);
+        userPayload.append("role", this.user.role);
+        userPayload.append("password", this.user.password);
         userPayload.append(
           "password_confirmation",
           this.user.attributes.password_confirmation
@@ -250,12 +248,12 @@ export default {
     },
     updateUser() {
       if (
-        !this.user.attributes.username ||
-        !this.user.attributes.email ||
-        !this.user.attributes.phone ||
-        !this.user.attributes.role ||
-        !this.user.attributes.password ||
-        !this.user.attributes.password_confirmation
+        !this.user.username ||
+        !this.user.email ||
+        !this.user.phone ||
+        !this.user.role ||
+        !this.user.password ||
+        !this.user.password_confirmation
       ) {
         this.$swal(
           "Fields validation",
@@ -265,15 +263,15 @@ export default {
       } else {
         this.overlay = true;
         var userPayload = new FormData();
-        userPayload.append("username", this.user.attributes.username);
-        userPayload.append("email", this.user.attributes.email);
-        userPayload.append("phone", this.user.attributes.phone);
-        userPayload.append("avatar", this.user.attributes.avatar);
-        userPayload.append("role", this.user.attributes.role);
-        userPayload.append("password", this.user.attributes.password);
+        userPayload.append("username", this.user.username);
+        userPayload.append("email", this.user.email);
+        userPayload.append("phone", this.user.phone);
+        userPayload.append("avatar", this.user.avatar);
+        userPayload.append("role", this.user.role);
+        userPayload.append("password", this.user.password);
         userPayload.append(
           "password_confirmation",
-          this.user.attributes.password_confirmation
+          this.user.password_confirmation
         );
         let endpoint = `${config.BASE_URL}/users/${this.user_id}`;
         axios
@@ -310,7 +308,7 @@ export default {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
-          this.users = response.data.data.data;
+          this.users = response.data.data;
           this.loading = false;
         })
         .catch((error) => {
@@ -324,7 +322,7 @@ export default {
           headers: { Authorization: `Bearer ${this.$store.state.token}` },
         })
         .then((response) => {
-          this.user = response.data.data.data;
+          this.user = response.data.data;
           this.user_id = user_id;
           this.editUserDialog = true;
         })
