@@ -217,7 +217,7 @@ export default {
         userPayload.append("password", this.user.password);
         userPayload.append(
           "password_confirmation",
-          this.user.attributes.password_confirmation
+          this.user.password_confirmation
         );
         let endpoint = `${config.BASE_URL}/users`;
         axios
